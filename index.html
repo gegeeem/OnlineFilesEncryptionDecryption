@@ -133,14 +133,17 @@
           <div id="nakonEnkripcije" class="hide">
 
             
-            <h3 class="decryptedHeader">Enkriptovani text</h3>
+            <h3 class="decryptedHeader">Enkriptovani fajl</h3>
             <div class="displayEncryptedTxt rstCls">
-              <textarea
+              <!-- <textarea
                 id="areaDisplayEncTxt"
                 class="rstCls"
                 rows="10"
                 placeholder="Dekriptovani tekst"
-                readonly></textarea>
+                readonly>
+              </textarea> -->
+            <a id="dowloadEncFile"   download>Preuzmite enkriptovani fajl <i class="fas fa-file-download"></i></a>
+
             </div>
             <!-- end of output encoded txt-->
             <!-- start encryption -->
@@ -149,9 +152,10 @@
             <!-- end of start ecnryption -->
             <!-- download encrypted txt, secret key & iv -->
 
-            <button class="hajde">
+            <!-- <button class="hajde">
+
               Preuzmite kriptovani fajl <i class="fas fa-file-download"></i>
-            </button>
+            </button> -->
 
             <div class="displayKeyAndIV random">
               <div class="secretKey">

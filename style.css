@@ -19,10 +19,12 @@ body {
   align-items: center;
 }
 .container {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   min-width: 60%;
+  min-height: 70%;
   padding: 15px;
   border-radius: 5px;
   background-color: rgb(254, 254, 255);
@@ -50,6 +52,7 @@ body {
 }
 .encryptionSlct,
 .decryptionSlct {
+  position: relative;
   color: rgb(138, 138, 138);
   min-width: 45%;
   padding-top: 10px;
@@ -73,6 +76,7 @@ body {
 }
 .encryption,
 .decryption {
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -125,6 +129,17 @@ form {
 }
 input[type="checkbox"] {
   accent-color: #446aab;
+}
+a{
+  font-size: medium;
+  font-family: inherit;
+  padding: 8px 10px;
+  background-color: white;
+  border: 2px solid var(--blueTranspa);
+  color: var(--blueTranspa);
+  border-radius: 5px;
+  margin: 3px;
+  text-decoration: none;
 }
 #rstBtn {
   --webkit-appearance: none;

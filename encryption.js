@@ -1,5 +1,7 @@
 import {showHide} from "./showHideElement.js"
 import {salt, wrapCryptoKey} from "./wrapingKey.js"
+import {createFileForDownload} from "./workingWithFiles.js"
+import{_arrayBufferToBase64,base64ToArrayBuffer} from "./convertingDataTypes.js"
 
 function encryption(){
     let  key, iv, ciphertext;
@@ -29,6 +31,8 @@ function encryption(){
                 ciphertext = res; // dodeli reyultat sifrovanja
                 console.log(ciphertext)
                 showHide("show","#nakonEnkripcije")
+                createFileForDownload("#dowloadEncFile","data:"+getUploadedFile.files[0].type+";base64,"+_arrayBufferToBase64(res));
+
             })
     
     
