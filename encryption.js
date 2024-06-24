@@ -1,8 +1,8 @@
 import {showHide} from "./showHideElement.js"
-import {getKey,generateKey,wrapCryptoKey} from "./wrapingKey.js"
+import {salt, wrapCryptoKey} from "./wrapingKey.js"
 
 function encryption(){
-    let salt, key, iv, ciphertext;
+    let  key, iv, ciphertext;
     const getUploadedFile = document.querySelector("#textForEncFile");
     const reader = new FileReader();
     reader.readAsArrayBuffer(getUploadedFile.files[0]);// ucitaj uploadovani fajl kao arrayOfBuffer
@@ -16,7 +16,7 @@ function encryption(){
             true,
             ["encrypt","decrypt"]
         ).then(res=>{
-            wrapCryptoKey(res);
+            wrapCryptoKey(res).then(res=>console.log("wrapovani kljuc"+res[0]+" salt vrednost: "+res[1]));
             key = res; // dodeli generisani kljuc
             window.crypto.subtle.encrypt(// enkripcija uploadovanog fajla
                 {

@@ -2,6 +2,7 @@ const selectEnc = document.querySelector(".encryptionSlct");
 const selectDec = document.querySelector(".decryptionSlct");
 
 const handleSelectEnc = () => {
+  console.log("handleSelectEnc = () => invoked")
   selectEnc.classList.add("selected");
   selectDec.classList.remove("selected");
   document.querySelector(".encryption").classList.remove("hide");
@@ -10,6 +11,8 @@ const handleSelectEnc = () => {
 selectEnc.addEventListener("click", handleSelectEnc);
 
 const handleSelectDec = () => {
+  console.log("handleSelectDec = () => { invoked")
+
   selectDec.classList.add("selected");
   selectEnc.classList.remove("selected");
   document.querySelector(".decryption").classList.remove("hide");

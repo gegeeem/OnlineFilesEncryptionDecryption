@@ -1,12 +1,13 @@
 
-    let salt;
+    export let salt;
   
     /*
     Get some key material to use as input to the deriveKey method.
     The key material is a password supplied by the user.
     */
     export function getKeyMaterial() {
-      const password = window.prompt("Enter your password");
+      console.log("invoked func=>getKeyMaterial() ");
+      const password = window.prompt("Unesite šifru");
       const enc = new TextEncoder();
       return window.crypto.subtle.importKey(
         "raw", 
@@ -22,6 +23,8 @@
     derive an AES-KW key using PBKDF2.
     */
    export function getKey(keyMaterial, salt) {
+    console.log("invoked func=>getKey() ");
+
       return window.crypto.subtle.deriveKey(
         {
           "name": "PBKDF2",
@@ -40,6 +43,8 @@
     Wrap the given key and write it into the "wrapped-key" space.
     */
    export async function wrapCryptoKey(keyToWrap) {
+    console.log("invoked func=> wrapCryptoKey(keyToWrap) ");
+
       // get the key encryption key
       const keyMaterial = await getKeyMaterial();
       salt = window.crypto.getRandomValues(new Uint8Array(16));
@@ -60,25 +65,25 @@
       //   wrappedKeyOutput.classList.remove("fade-in");
       // });
       // wrappedKeyOutput.textContent = `[${wrappedKeyBuffer}] salt ${salt}`;
+      return [wrappedKeyBuffer, salt];
     }
   
     /*
     Generate an encrypt/decrypt secret key,
     then set up an event listener on the "Wrap" button.
     */
-    window.crypto.subtle.generateKey(
-      {
-        name: "AES-GCM",
-        length: 256,
-      },
-      true,
-      ["encrypt", "decrypt"]
-    ).then((secretKey) => {
-      const wrapButton = document.querySelector(".raw");
-      wrapButton.addEventListener("click", () => {
-        wrapCryptoKey(secretKey);
-      });
+    // window.crypto.subtle.generateKey(
+    //   {
+    //     name: "AES-GCM",
+    //     length: 256,
+    //   },
+    //   true,
+    //   ["encrypt", "decrypt"]
+    // ).then((secretKey) => {
+      
+    //     wrapCryptoKey(secretKey);
+     
   
-    });
+    // });
   
  
