@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>AES-GCM enkripcija i dekripcija</h1>
+      <!-- select  action, encryption or decription -->
+      <div class="toggleEncDec">
+        <div class="encryptionSlct selected">Enkripcija</div>
+        <div class="decryptionSlct">Dekripcija</div>
+      </div>
+      <!-- encryption -->
+      <div class="encryption">
+        <form>
+          <label for="textForEnc" class="labelTextForEnc">
+            Unesite tekst ispod ili učitajte fajl u .txt formatu
+          </label>
+
+          <div class="getFileAndReset">
+            <div >
+                <label for="textForEncFile" class="textForEncFileLabel">
+                    Izaberite fajl <i class="fas fa-file-upload"></i>
+                </label>
+                <span id="fileUploadedName"></span>
+                <input id="textForEncFile" class="textForEncFileLabel" type="file"  hidden/>
+            </div>
+            
+            
+            <!-- accept=".txt, .doc, .docx"  -->
+            <div id ="resetDiv" class="hide">
+              <input
+              type="button"
+              id="rstBtn"
+              value="Poništi"
+              onclick="isEmptyOrReset('.rstCls')" />
+            </div>
+
+            
+          </div>
+          <!-- <button onclick="isEmptyOrReset()">Poništi</button> -->
+        </form>
+        <div class="keyAndIV">
+          <label for="userKeyIVch" class="userKeyIVLabel">
+            <input
+              type="checkbox"
+              name="userKeyIV"
+              id="userKeyIVch"
+              class="userKeyIV"
+              onclick="handleTextAreaInput('#textForEnc', '#keyTxtUser','#ivTxtAreaUser')" 
+            />
+              Unesite postojeci tajni kljuc i IV
+          </label>
+          <div class="displayKeyAndIV hide">
+            <div class="secretKey">
+              <h6>Unesite tajni kljuc</h6>
+              <textarea
+                id="keyTxtUser"
+                class="keyTxt user"
+                cols="30"
+                rows="8"
+                placeholder="Tajni kljuc"
+                oninput="handleTextAreaInput('#textForEnc', '#keyTxtUser','#ivTxtAreaUser')"></textarea>
+              <input
+                id="jwk"
+                type="file"
+                class="user"
+                onchange="readFile(this,'.keyTxt')"
+                hidden />
+              <div>
+                <label for="jwk" class="textForEncFileLabel"
+                  >Izaberite ključ <i class="fas fa-file-upload"></i
+                ></label>
+                <input
+                  type="reset"
+                  id="rstBtn"
+                  value="Poništi"
+                  onclick="isEmptyOrReset('#keyTxtUser')" />
+              </div>
+            </div>
+            <div class="iv">
+              <h6>Unesite IV</h6>
+
+              <textarea
+                id="ivTxtAreaUser"
+                cols="30"
+                rows="8"
+                class="ivTxtArea user"
+                placeholder="IV"
+                oninput="handleTextAreaInput('#textForEnc', '#keyTxtUser','#ivTxtAreaUser')"></textarea>
+              <input
+                id="iv"
+                type="file"
+                class="user"
+                onchange="readFile(this,'.ivTxtArea')"
+                value="Preuzmite IV"
+                hidden />
+              <div>
+                <label for="iv" class="textForEncFileLabel"
+                  >Izaberite IV <i class="fas fa-file-upload"></i
+                ></label>
+                <input
+                  type="reset"
+                  id="rstBtn"
+                  value="Poništi"
+                  onclick="isEmptyOrReset('#ivTxtAreaUser')" />
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+            <!-- start encyption btn -->
+            <button id="startEncryption" type="submit" class="hide">
+              Pokreni Enkripciju
+            </button>
+          <!-- end of start encryptionbtn -->
+          <!-- output encoded txt -->
+          <div id="nakonEnkripcije" class="hide">
+
+            
+            <h3 class="decryptedHeader">Enkriptovani text</h3>
+            <div class="displayEncryptedTxt rstCls">
+              <textarea
+                id="areaDisplayEncTxt"
+                class="rstCls"
+                rows="10"
+                placeholder="Dekriptovani tekst"
+                readonly></textarea>
+            </div>
+            <!-- end of output encoded txt-->
+            <!-- start encryption -->
+
+            <!-- <input type="button" class="hajde" value="preuzmi" /> -->
+            <!-- end of start ecnryption -->
+            <!-- download encrypted txt, secret key & iv -->
+
+            <button class="hajde">
+              Preuzmite kriptovani fajl <i class="fas fa-file-download"></i>
+            </button>
+
+            <div class="displayKeyAndIV random">
+              <div class="secretKey">
+                <textarea cols="30" rows="8" class="exportJWK rstCls" readonly></textarea>
+                <button class="btnExportJWK">
+                  Preuzmite JWK <i class="fas fa-file-download"></i>
+                </button>
+              </div>
+              <div class="iv">
+                <textarea cols="30" rows="8" class="exportIV rstCls" readonly></textarea>
+                <button class="btnExportIV">
+                  Preuzmite IV <i class="fas fa-file-download"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        
+      </div>
+      <!-- end of encryption -->
+      <!-- decryption -->
+      <div class="decryption hide">
+        <form>
+          <label for="textForDec" class="labelTextForEnc"
+            >Unesite tekst ispod ili učitajte fajl u .txt formatu</label
+          >
+
+          <textarea
+            id="textForDec"
+            class=""
+            rows="10"
+            placeholder="Unesite sifrovani tekst"
+            required=""
+            oninput="handleTextJwkIVforDec('#textForDec', '#keyTxtDecUser', '#ivTxtAreaDecUser')"></textarea>
+          <div class="getFileAndReset">
+            
+              <label for="textForDecFile" class="textForEncFileLabel"
+                >Izaberite fajl <i class="fas fa-file-upload"></i
+              ></label>
+              <input
+                type="reset"
+                id="rstBtn"
+                value="Poništi"
+                onclick="isEmptyOrReset('#textForDec')" />
+            
+
+            <input
+              id="textForDecFile"
+              type="file"
+              onchange="readFile(this, '#textForDec')"
+              accept=".txt"
+              hidden />
+            <!-- accept=".txt, .doc, .docx"  -->
+            <!-- <button onclick="(e)=>isEmptyOrReset(e)">Poništi</button> -->
+            <!-- <input type="reset" value="ne" /> -->
+          </div>
+        </form>
+
+        <div class="keyAndIV">
+          <h3>Unesite postojeci tajni kljuc i IV</h3>
+          <div class="displayKeyAndIVDec">
+            <div class="secretKey">
+              <h6>Unesite tajni kljuc</h6>
+              <textarea
+                id="keyTxtDecUser"
+                class="keyTxtDec user"
+                cols="30"
+                rows="8"
+                placeholder="Unesite tajni kljuc"
+                oninput="handleTextJwkIVforDec('#textForDec', '#keyTxtDecUser', '#ivTxtAreaDecUser')"></textarea>
+              <div>
+                <label for="jwkForDec" class="textForEncFileLabel"
+                  >Izaberite ključ <i class="fas fa-file-upload"></i
+                ></label>
+                <input
+                  type="reset"
+                  id="rstBtn"
+                  value="Poništi"
+                  onclick="isEmptyOrReset('#keyTxtDecUserr')" />
+              </div>
+
+              <input
+                id="jwkForDec"
+                type="file"
+                class="user"
+                onchange="readFile(this,'.keyTxtDec')"
+                hidden />
+            </div>
+            <div class="iv">
+              <h6>Unesite IV</h6>
+
+              <textarea
+                id="ivTxtAreaDecUser"
+                cols="30"
+                rows="8"
+                class="ivTxtAreaDec user"
+                placeholder="Unesite IV"
+                oninput="handleTextJwkIVforDec('#textForDec', '#keyTxtDecUser', '#ivTxtAreaDecUser')"></textarea>
+
+              <div>
+                <label for="ivForDec" class="textForEncFileLabel"
+                  >Izaberite IV <i class="fas fa-file-upload"></i
+                ></label>
+                <input
+                  id="rstBtn"
+                  type="reset"
+                  value="Poništi"
+                  onclick="isEmptyOrReset('#ivTxtAreaDecUser')" />
+              </div>
+              <input
+                id="ivForDec"
+                type="file"
+                class="user"
+                onchange="readFile(this,'.ivTxtAreaDec')"
+                value="Preuzmite IV"
+                hidden />
+            </div>
+          </div>
+        </div>
+        <!-- start encyption btn -->
+        <button type="submit" class="startDecryption hide">
+          Pokreni Dekripciju
+        </button>
+        <!-- end of start decryptionbtn -->
+        <!-- output decoded txt -->
+        <h3 class="decryptedHeader">Dekriptovani text</h3>
+        <div class="displayEncryptedTxt">
+          <textarea
+            id="areaDisplayDecTxt"
+            rows="10"
+            required
+            readonly></textarea>
+        </div>
+        <!-- end of output decoded txt-->
+        <!-- start decryption -->
+
+        <!-- <input type="button" class="hajde" value="preuzmi" /> -->
+        <!-- end of start ecnryption -->
+        <!-- download encrypted txt, secret key & iv -->
+        <button class="exportDecFile">
+          Preuzmite dekriptovani fajl <i class="fas fa-file-download"></i>
+        </button>
+      </div>
+    </div>
+    <!-- <script type="module" src="encryption.js"></script> -->
+    <!-- <script>
+      function readFile(input, elementSelector) {
+        console.log("selektor: ", elementSelector);
+
+        let file = input.files[0];
+
+        let reader = new FileReader();
+        console.log("file type???????",file.type);
+        const blob1 = new Blob([file], {type: file.type});
+      //  let sa =  reader.readAsArrayBuffer(blob1);
+      function getMimeTypeFromArrayBuffer(arrayBuffer) {
+    const uint8arr = new Uint8Array(arrayBuffer)
+  
+    const len = 4
+    if (uint8arr.length >= len) {
+      let signatureArr = new Array(len)
+      for (let i = 0; i < len; i++)
+        signatureArr[i] = (new Uint8Array(arrayBuffer))[i].toString(16);
+      const signature = signatureArr.join('').toUpperCase()
+  
+      switch (signature) {
+        case '89504E47':
+          return 'image/png'
+        case '47494638':
+          return 'image/gif'
+        case '25504446':
+          return 'application/pdf'
+        case 'FFD8FFDB': 
+        case 'FFD8FFE0':
+          return 'image/jpeg'
+        case '0,FFD8':
+          return 'application/zip'
+          case 'EFBBBF':
+          case 'FFFE':
+            return " tekst cisti"
+        default:
+          return signature;
+      }
+    }
+    return null
+  }
+  console.log("blob1type",blob1.type);
+      blob1.arrayBuffer().then(res=>{
+        console.log("getMimeTypeFromArrayBuffer(res)",getMimeTypeFromArrayBuffer(res));
+        document.querySelector(elementSelector).value = res;
+
+      });
+      
+          
+        
+          
+       
+
+        
+
+        // reader.readAsText(file);
+
+        reader.onload = function () {
+          console.log(reader.result);
+          // document.querySelector(elementSelector).value = reader.result;
+          // document.querySelector(".startEncryption").classList.remove("hide");
+          handleTextAreaInput("#textForEnc", "#keyTxtUser", "#ivTxtAreaUser");
+          handleTextJwkIVforDec(
+            "#textForDec",
+            "#keyTxtDecUser",
+            "#ivTxtAreaDecUser"
+          );
+        };
+
+        reader.onerror = function () {
+          console.log(reader.error);
+        };
+      }
+    </script> -->
+    <script>
+      const getTextArea = document.querySelector(".startEncryption");
+      // const insertedJWK = document.querySelector(".")
+      function isEmptyOrReset(resetClassName) {
+        
+        // document.querySelector(resetClassName).value = "";
+        let getElemSameClass = document.querySelectorAll(resetClassName);
+        console.log("getElemSameClass",getElemSameClass);
+        for(let i = 0; i<getElemSameClass.length; i++){
+          getElemSameClass[i].value = "";
+        
+         console.log(getElemSameClass[i].value);
+        }
+
+        const getTextArea = document.querySelector(".startEncryption");
+        if (getTextArea.value) {
+          getTextArea.classList.remove("hide");
+        } else {
+          getTextArea.classList.add("hide");
+
+          console.log("stani");
+        }
+      }
+      function handleTextAreaInput(txtIsEmpty, jwkIsEmpty, ivIsEmpty) {
+        const getTxtValue = document.querySelector(txtIsEmpty).value;
+        const getJwkValue = document.querySelector(jwkIsEmpty).value;
+        const getIvValue = document.querySelector(ivIsEmpty).value;
+        console.log("getTxtValue", getTxtValue);
+        console.log("getJwkValue", getJwkValue);
+        console.log("getIvValue", getIvValue);
+        const isUserJwkIvChecked =
+          document.querySelector("#userKeyIVch").checked;
+
+        if (isUserJwkIvChecked && getTxtValue && getJwkValue && getIvValue) {
+          getTextArea.classList.remove("hide");
+        } else if (!isUserJwkIvChecked && getTxtValue) {
+          getTextArea.classList.remove("hide");
+        } else {
+          getTextArea.classList.add("hide");
+        }
+      }
+
+      function handleTextJwkIVforDec(txtIsEmpty, jwkIsEmpty, ivIsEmpty) {
+        const getStartDecBtn = document.querySelector(".startDecryption");
+        const getTxtValue = document.querySelector(txtIsEmpty).value;
+        const getJwkValue = document.querySelector(jwkIsEmpty).value;
+        const getIvValue = document.querySelector(ivIsEmpty).value;
+        console.log(
+          "value of...........",
+          getTxtValue,
+          getJwkValue,
+          getIvValue
+        );
+        if (getTxtValue && getJwkValue && getIvValue) {
+          getStartDecBtn.classList.remove("hide");
+        } else {
+          getStartDecBtn.classList.add("hide");
+        }
+      }
+    </script>
+    <script src="fileUploadedName.js" type="module"></script>
+    <script src="toggleCheckBox.js"></script>
+    <script src="selectEncDec.js"></script>
+    <script src="encryption.js" type="module"></script>
+    <!-- <script src="decryption.js"></script> -->
+  </body>
+</html>
