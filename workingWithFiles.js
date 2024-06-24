@@ -1,7 +1,7 @@
-export function createFileForDownload(id, file){
+export function createFileForDownload(id, file, name){
     
         const getLink = document.querySelector(id);
         getLink.href = file;
-        getLink.download = ".txt";
+        getLink.download = name;
     
 }
