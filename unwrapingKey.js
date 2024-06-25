@@ -1,4 +1,4 @@
-export async function unwrappingKey(wrappedKeyBytes, saltBytes){
+export  function unwrappingKey(wrappedKeyBytes, saltBytes){
     /*
     Convert an array of byte values to an ArrayBuffer.
     */
@@ -35,6 +35,7 @@ export async function unwrappingKey(wrappedKeyBytes, saltBytes){
         // The salt must match the salt originally used to derive the key.
         // In this example it's supplied as a constant "saltBytes".
         const saltBuffer = bytesToArrayBuffer(saltBytes);
+        // console.log("const saltBuffer = bytesToArrayBuffer(saltBytes)===>",saltBuffer)
         // 3 derive the key from key material and salt
         return window.crypto.subtle.deriveKey(
           {
@@ -56,7 +57,7 @@ export async function unwrappingKey(wrappedKeyBytes, saltBytes){
       that will resolve to a CryptoKey representing the secret key.
       */
       async function unwrapSecretKey(wrappedKey) {
-      console.log("pokrenuta funkcija unwrapKey")
+     
 
         // 1. get the unwrapping key
         const unwrappingKey = await getUnwrappingKey();

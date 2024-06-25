@@ -18,6 +18,7 @@ function encryption(){
             true,
             ["encrypt","decrypt"]
         );
+        console.log("generisani kljuc key=>",key)
         ciphertext = await window.crypto.subtle.encrypt(// enkripcija uploadovanog fajla
             {
                 name: "AES-GCM",
@@ -31,12 +32,12 @@ function encryption(){
                 createFileForDownload("#dowloadEncFile","data:"+getUploadedFile.files[0].type+";base64,"+_arrayBufferToBase64(res),"enkriptovani_fajl");
                 wrapCryptoKey(key).then(res=>{
                     console.log("wrapovani kljuc"+res[0]+" salt vrednost: "+res[1])
-                    wrappedKey = res.toString();
+                    wrappedKey = res[0].toString();
                     console.group("wrappedKey", wrappedKey)
                     const DataForDecryption = {
                         key:  wrappedKey, //mora export as funkcija
                         iv: iv.toString(),
-                        salt: salt.toString(),
+                        salt: res[1].toString(),
                     }
                     console.log("DataForDec> ",DataForDecryption)
                     createFileForDownload("#dataFromEncryption","data:application/json;utf8,"+JSON.stringify(DataForDecryption),"podaci_za_dekripciju");

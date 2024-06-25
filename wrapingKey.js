@@ -48,6 +48,8 @@
       // get the key encryption key
       const keyMaterial = await getKeyMaterial();
       salt = window.crypto.getRandomValues(new Uint8Array(16));
+      // salt =new Uint8Array([144,99,55,125,200,161,2,197,1,115,137,127,111,195,114,244]);
+
       const wrappingKey = await getKey(keyMaterial, salt);
   
       const wrapped = await window.crypto.subtle.wrapKey(
@@ -66,7 +68,8 @@
       //   wrappedKeyOutput.classList.remove("fade-in");
       // });
       // wrappedKeyOutput.textContent = `[${wrappedKeyBuffer}] salt ${salt}`;
-      return [ wrappedKeyBuffer, salt];
+      console.log( `{wrappedKeyBuffer}:==>[${wrappedKeyBuffer}] {salt}==> ${salt}`);
+      return [wrappedKeyBuffer, salt];
     }
   
     /*
