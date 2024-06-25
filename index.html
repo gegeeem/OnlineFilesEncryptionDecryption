@@ -163,7 +163,7 @@
               <div class="secretKey">
                 <!-- <textarea cols="30" rows="8" class="exportJWK rstCls" readonly></textarea> -->
                 
-                <a id="dataForDecryption"   download>Preuzmite podatke za dekripciju fajla <i class="fas fa-file-download"></i></a>
+                <a id="dataFromEncryption"   download>Preuzmite podatke za dekripciju fajla <i class="fas fa-file-download"></i></a>
 
                 <button class="btnExportJWK">
                   Preuzmite JWK <i class="fas fa-file-download"></i>
@@ -199,7 +199,7 @@
             
               <label for="textForDecFile" class="textForEncFileLabel"
                 >Izaberite fajl <i class="fas fa-file-upload"></i
-              ></label>
+              ></label> <span id="encryptedFileUploadedName"></span>
               <input
                 type="reset"
                 id="rstBtn"
@@ -210,8 +210,6 @@
             <input
               id="textForDecFile"
               type="file"
-              onchange="readFile(this, '#textForDec')"
-              accept=".txt"
               hidden />
             <!-- accept=".txt, .doc, .docx"  -->
             <!-- <button onclick="(e)=>isEmptyOrReset(e)">Poništi</button> -->
@@ -231,8 +229,9 @@
                 rows="8"
                 placeholder="Unesite tajni kljuc"
                 oninput="handleTextJwkIVforDec('#textForDec', '#keyTxtDecUser', '#ivTxtAreaDecUser')"></textarea>
+                <span id="dataForDecryption"></span>
               <div>
-                <label for="jwkForDec" class="textForEncFileLabel"
+                <label for="dataForDec" class="textForEncFileLabel"
                   >Izaberite ključ <i class="fas fa-file-upload"></i
                 ></label>
                 <input
@@ -243,10 +242,9 @@
               </div>
 
               <input
-                id="jwkForDec"
+                id="dataForDec"
                 type="file"
                 class="user"
-                onchange="readFile(this,'.keyTxtDec')"
                 hidden />
             </div>
             <div class="iv">
@@ -281,7 +279,7 @@
           </div>
         </div>
         <!-- start encyption btn -->
-        <button type="submit" class="startDecryption hide">
+        <button id="btnForDec" type="submit" class="startDecryption hide">
           Pokreni Dekripciju
         </button>
         <!-- end of start decryptionbtn -->
@@ -444,6 +442,7 @@
     <script src="toggleCheckBox.js"></script>
     <script src="selectEncDec.js"></script>
     <script src="encryption.js" type="module"></script>
+    <script src="decryption.js" type="module"></script>
     <!-- <script src="decryption.js"></script> -->
   </body>
 </html>

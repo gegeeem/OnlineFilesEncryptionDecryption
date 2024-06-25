@@ -56,8 +56,9 @@
         wrappingKey,
         "AES-KW"
       );
-  
+      console.log("wrapped", wrapped);
       const wrappedKeyBuffer = new Uint8Array(wrapped);
+      console.log("wrapppedKeyBuffer",wrappedKeyBuffer)
   
       // const wrappedKeyOutput = document.querySelector(".wrapped-key");
       // wrappedKeyOutput.classList.add("fade-in");
@@ -65,7 +66,7 @@
       //   wrappedKeyOutput.classList.remove("fade-in");
       // });
       // wrappedKeyOutput.textContent = `[${wrappedKeyBuffer}] salt ${salt}`;
-      return [wrappedKeyBuffer, salt];
+      return [ wrappedKeyBuffer, salt];
     }
   
     /*

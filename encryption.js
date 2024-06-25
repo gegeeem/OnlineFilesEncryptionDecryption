@@ -8,7 +8,7 @@ function encryption(){
     const getUploadedFile = document.querySelector("#textForEncFile");
     const reader = new FileReader();
     reader.readAsArrayBuffer(getUploadedFile.files[0]);// ucitaj uploadovani fajl kao arrayOfBuffer
-    reader.onload = async ()=>{// nakon zavrsetka ocitavanja
+    reader.onload = async ()=>{// nakon zavrsetka ocitavanja fajla
         iv =  window.crypto.getRandomValues(new Uint8Array(12)) // generisanje iv-a
         key =  await window.crypto.subtle.generateKey( // gerisanje kljuca
             {
@@ -25,26 +25,25 @@ function encryption(){
             },
             key,
             reader.result).then(res=>{
-                                        // ciphertext = res; // dodeli reyultat sifrovanja
-                                        // console.log(ciphertext)
-                                        showHide("show","#nakonEnkripcije")
-                                        createFileForDownload("#dowloadEncFile","data:"+getUploadedFile.files[0].type+";base64,"+_arrayBufferToBase64(res),"enkriptovani_fajl");
-                                        wrapCryptoKey(key).then(res=>{
-                                                                console.log("wrapovani kljuc"+res[0]+" salt vrednost: "+res[1])
-                                                                wrappedKey = res.toString();
-                                                                console.group("wrappedKey", wrappedKey)
-                                                                const DataForDecryption = {
-                                                                    key:  wrappedKey, //mora export as funkcija
-                                                                    iv: iv.toString(),
-                                                                    salt: salt.toString(),
-                                                                }
-                                                                console.log("DataForDec> ",DataForDecryption)
-                                                                createFileForDownload("#dataForDecryption","data:application/json;utf8,"+JSON.stringify(DataForDecryption),"podaci_za_dekripciju");
-                                                            }
-                                                        );
+                // ciphertext = res; // dodeli reyultat sifrovanja
+                // console.log(ciphertext)
+                showHide("show","#nakonEnkripcije")
+                createFileForDownload("#dowloadEncFile","data:"+getUploadedFile.files[0].type+";base64,"+_arrayBufferToBase64(res),"enkriptovani_fajl");
+                wrapCryptoKey(key).then(res=>{
+                    console.log("wrapovani kljuc"+res[0]+" salt vrednost: "+res[1])
+                    wrappedKey = res.toString();
+                    console.group("wrappedKey", wrappedKey)
+                    const DataForDecryption = {
+                        key:  wrappedKey, //mora export as funkcija
+                        iv: iv.toString(),
+                        salt: salt.toString(),
+                    }
+                    console.log("DataForDec> ",DataForDecryption)
+                    createFileForDownload("#dataFromEncryption","data:application/json;utf8,"+JSON.stringify(DataForDecryption),"podaci_za_dekripciju");
+                });
                 
 
-                                })
+            })
     
     
         
