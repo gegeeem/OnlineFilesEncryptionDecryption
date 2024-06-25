@@ -40,7 +40,7 @@ function encryption(){
                         salt: res[1].toString(),
                     }
                     console.log("DataForDec> ",DataForDecryption)
-                    browse
+            
                     createFileForDownload("#dataFromEncryption","data:application/json;utf8,"+JSON.stringify(DataForDecryption),"podaci za dekripciju");
                 });
                 
