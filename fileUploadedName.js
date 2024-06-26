@@ -1,5 +1,5 @@
 import {showHide} from "./showHideElement.js"
-function  fileUploadedName(idOfInpuFile, idSpan){
+function  displayFileUploadedName(idOfInpuFile, idSpan){
     const file = document.querySelector(idOfInpuFile);
     const getSpanDisplayFileName = document.querySelector(idSpan)
 
@@ -16,9 +16,9 @@ function  fileUploadedName(idOfInpuFile, idSpan){
     file.addEventListener("change",getFileUploadedNam)
 }
 
-fileUploadedName("#textForEncFile", "#fileUploadedName")
-fileUploadedName("#textForDecFile","#encryptedFileUploadedName")
-fileUploadedName("#dataForDec","#dataForDecryption")
+displayFileUploadedName("#textForEncFile", "#fileUploadedName")
+displayFileUploadedName("#textForDecFile","#encryptedFileUploadedName")
+displayFileUploadedName("#dataForDec","#dataForDecryption")
 
 
 

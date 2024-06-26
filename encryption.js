@@ -26,10 +26,10 @@ function encryption(){
             },
             key,
             reader.result).then(res=>{
+               
                 // ciphertext = res; // dodeli reyultat sifrovanja
                 // console.log(ciphertext)
-                showHide("show","#nakonEnkripcije")
-                createFileForDownload("#dowloadEncFile","data:"+getUploadedFile.files[0].type+";base64,"+_arrayBufferToBase64(res),"");
+                createFileForDownload("#dowloadEncFile","data:"+getUploadedFile.files[0].type+";base64,"+_arrayBufferToBase64(res),getUploadedFile.files[0].name);
                 wrapCryptoKey(key).then(res=>{
                     console.log("wrapovani kljuc"+res[0]+" salt vrednost: "+res[1])
                     wrappedKey = res[0].toString();
@@ -42,6 +42,9 @@ function encryption(){
                     console.log("DataForDec> ",DataForDecryption)
             
                     createFileForDownload("#dataFromEncryption","data:application/json;utf8,"+JSON.stringify(DataForDecryption),"podaci za dekripciju");
+                    showHide("show","#nakonEnkripcije")
+                    
+
                 });
                 
 

@@ -27,16 +27,16 @@
       <!-- encryption -->
       <div class="encryption">
         <form>
-          <label for="textForEnc" class="labelTextForEnc">
-            Unesite tekst ispod ili učitajte fajl u .txt formatu
-          </label>
-
+          <h3>Učitajte fajl za enkripciju</h3>
+          
+          <div id="fileUploadedName">span</div>
           <div class="getFileAndReset">
-            <div >
+            
+            <div>
                 <label for="textForEncFile" class="textForEncFileLabel">
                     Izaberite fajl <i class="fas fa-file-upload"></i>
                 </label>
-                <span id="fileUploadedName"></span>
+                
                 <input id="textForEncFile" class="textForEncFileLabel" type="file"  hidden/>
             </div>
             
@@ -46,7 +46,7 @@
               <input
               type="button"
               id="rstBtn"
-              value="Poništi"
+              value="Ponisti &#xf023"
               onclick="isEmptyOrReset('.rstCls')" />
             </div>
 
@@ -63,18 +63,18 @@
               class="userKeyIV"
               onclick="handleTextAreaInput('#textForEnc', '#keyTxtUser','#ivTxtAreaUser')" 
             />
-              Unesite postojeci tajni kljuc i IV
+              Unesite postojece podatke za enkripciju
           </label>
           <div class="displayKeyAndIV hide">
             <div class="secretKey">
-              <h6>Unesite tajni kljuc</h6>
+              <!-- <h6>U</h6>
               <textarea
                 id="keyTxtUser"
                 class="keyTxt user"
                 cols="30"
                 rows="8"
                 placeholder="Tajni kljuc"
-                oninput="handleTextAreaInput('#textForEnc', '#keyTxtUser','#ivTxtAreaUser')"></textarea>
+                oninput="handleTextAreaInput('#textForEnc', '#keyTxtUser','#ivTxtAreaUser')"></textarea> -->
               <input
                 id="jwk"
                 type="file"
@@ -83,7 +83,7 @@
                 hidden />
               <div>
                 <label for="jwk" class="textForEncFileLabel"
-                  >Izaberite ključ <i class="fas fa-file-upload"></i
+                  >Učitaj podatke <i class="fas fa-file-upload"></i
                 ></label>
                 <input
                   type="reset"
@@ -92,7 +92,7 @@
                   onclick="isEmptyOrReset('#keyTxtUser')" />
               </div>
             </div>
-            <div class="iv">
+            <!-- <div class="iv">
               <h6>Unesite IV</h6>
 
               <textarea
@@ -119,14 +119,15 @@
                   value="Poništi"
                   onclick="isEmptyOrReset('#ivTxtAreaUser')" />
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
         
         
             <!-- start encyption btn -->
             <button id="startEncryption"  class="hide">
-              Pokreni Enkripciju
+              Pokreni Enkripciju <i class="fa fa-lock" aria-hidden="true"></i>
+
             </button>
           <!-- end of start encryptionbtn -->
           <!-- output encoded txt -->
@@ -142,6 +143,7 @@
                 placeholder="Dekriptovani tekst"
                 readonly>
               </textarea> -->
+              
             <a id="dowloadEncFile"   download>Preuzmite enkriptovani fajl <i class="fas fa-file-download"></i></a>
 
             </div>
@@ -165,16 +167,16 @@
                 
                 <a id="dataFromEncryption"   download>Preuzmite podatke za dekripciju fajla <i class="fas fa-file-download"></i></a>
 
-                <button class="btnExportJWK">
+                <!-- <button class="btnExportJWK">
                   Preuzmite JWK <i class="fas fa-file-download"></i>
-                </button>
+                </button> -->
               </div>
-              <div class="iv">
+              <!-- <div class="iv">
                 <textarea cols="30" rows="8" class="exportIV rstCls" readonly></textarea>
                 <button class="btnExportIV">
                   Preuzmite IV <i class="fas fa-file-download"></i>
                 </button>
-              </div>
+              </div> -->
             </div>
           </div>
 

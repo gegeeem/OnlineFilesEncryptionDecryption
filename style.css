@@ -16,14 +16,29 @@ body {
   text-align: center;
   display: flex;
   justify-content: center;
-  align-items: center;
+  
+}
+@media only screen and (min-width: 768px) {
+  .container{
+    width: 75%;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .container{
+    width: 85%;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .container{
+    width: 100%;
+  }
 }
 .container {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 60%;
+  
   min-height: 70%;
   padding: 15px;
   border-radius: 5px;
@@ -129,6 +144,9 @@ form {
 }
 input[type="checkbox"] {
   accent-color: #446aab;
+}
+input[type = "button"]{
+  font-family: FontAwesome;
 }
 a{
   font-size: medium;
