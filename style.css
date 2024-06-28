@@ -243,10 +243,6 @@ button:hover {
   display: flex;
   flex-direction: row;
 }
-
-.hide {
-  display: none;
-}
 .fa-file{
   color: #446aab;
 
@@ -264,4 +260,7 @@ button:hover {
   display: inline-block;
   position: relative;
 
+}
+.hide {
+  display: none;
 }

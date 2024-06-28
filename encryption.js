@@ -3,7 +3,7 @@ import {salt, wrapCryptoKey} from "./wrapingKey.js"
 import {createFileForDownload} from "./workingWithFiles.js"
 import{_arrayBufferToBase64,base64ToArrayBuffer} from "./convertingDataTypes.js"
 
-function encryption(){
+export function encryption(){
     let  key, iv, ciphertext, wrappedKey;
     const getUploadedFile = document.querySelector("#textForEncFile");
     const reader = new FileReader();
@@ -57,5 +57,4 @@ function encryption(){
     
     }
 }
-const startEncryption = document.querySelector("#startEncryption")
-startEncryption.addEventListener("click",encryption);
+
