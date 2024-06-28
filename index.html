@@ -29,11 +29,10 @@
         <form>
           <h3>Učitajte fajl za enkripciju</h3>
           
-          <div id="fileUploadedName" >
+          <div id="fileUploadedName" class="fileUploadedName">
             <div class="inlnBlck hide">
               <i  class="fa fa-file fa-4x" aria-hidden="true"></i>
               <span id="fileExtension" class="fa-layers-text"  style="font-weight:600;">NEW</span>
-
             </div>
             <div>
               <span id="displayNameOfUploadedFile"></span>
@@ -56,13 +55,13 @@
             
             
             <!-- accept=".txt, .doc, .docx"  -->
-            <div id ="resetDiv" class="hide">
+            <div id ="resetDiv" class="resetDiv hide">
               <input
               type="button"
               id="rstBtn"
               value="Ponisti"
               placeholder=""
-              onclick="isEmptyOrReset('.rstCls')" />
+               />
             </div>
 
             
@@ -70,7 +69,7 @@
           <!-- <button onclick="isEmptyOrReset()">Poništi</button> -->
         </form>
         <div class="keyAndIV">
-          <label for="userKeyIVch" class="userKeyIVLabel">
+          <label for="userKeyIVch" class="userKeyIVLabel hide">
             <input
               type="checkbox"
               name="userKeyIV"

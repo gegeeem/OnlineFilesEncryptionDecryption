@@ -19,10 +19,11 @@ function  displayFileUploadedName(idOfInpuFile, idSpan, displayFileType){
 
         }
        
-        showHide("show", ".inlnBlck")
-        showHide("hide","#btnIzaberiFajl")
+        showHide("show", ".inlnBlck")// prikazi ikonicu fajla
+        showHide("hide","#btnIzaberiFajl")// sakrij dugme "izaberite fajl"
         showHide("show","#resetDiv"); // prikazi "ponisti" dugme
         showHide("show","#startEncryption") // prikazi "Pokreni enkripciju dugme"
+        showHide("show", ".userKeyIVLabel")
         showHide("show", "#btnForDec")
 
     }
