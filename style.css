@@ -20,7 +20,7 @@ body {
 }
 @media only screen and (min-width: 768px) {
   .container{
-    width: 75%;
+    width: 70%;
   }
 }
 @media only screen and (max-width: 600px) {
@@ -30,7 +30,7 @@ body {
 }
 @media only screen and (max-width: 480px) {
   .container{
-    width: 100%;
+    width: 95%;
   }
 }
 .container {
@@ -138,9 +138,11 @@ form {
 
 .getFileAndReset {
   width: 98%;
-  display: inline-flex;
+  display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  align-items: center;
+  margin: 10px;
 }
 input[type="checkbox"] {
   accent-color: #446aab;
@@ -244,4 +246,22 @@ button:hover {
 
 .hide {
   display: none;
+}
+.fa-file{
+  color: #446aab;
+
+}
+.fa-layers-text{
+  font-size:medium;
+  display: inline-block;
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  color: rgb(241, 242, 250);
+}
+.inlnBlck{
+  display: inline-block;
+  position: relative;
+
 }
