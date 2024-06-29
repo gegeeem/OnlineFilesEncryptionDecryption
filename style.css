@@ -72,6 +72,8 @@ body {
   min-width: 45%;
   padding-top: 10px;
   padding-bottom: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
   /* background-color: rgba(250, 247, 255, 0.89); */
@@ -223,8 +225,9 @@ button:hover {
   border-top: 2px solid var(--gray);
 }
 .displayEncryptedTxt {
-  display: flex;
-  justify-content: center;
+  display:flex;
+  flex-direction: column;
+  justify-content:center;
   align-items: center;
   width: 98%;
 }
@@ -247,7 +250,7 @@ button:hover {
   color: #446aab;
 
 }
-.fa-layers-text{
+.fa-layers-text, .fileLock{
   font-size:medium;
   display: inline-block;
   position: absolute;
@@ -256,9 +259,16 @@ button:hover {
   transform: translate(-50%, -50%);
   color: rgb(241, 242, 250);
 }
-.inlnBlck{
+.inlnBlck, .encFileName{
   display: inline-block;
   position: relative;
+
+}
+.nakonEnkripcije{
+  width: 90%;
+}
+#dowloadEncFile{
+ display: block;
 
 }
 .hide {

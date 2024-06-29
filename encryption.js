@@ -48,7 +48,7 @@ export function encryption(){
                 });
                 
 
-            })
+            }).catch(e=>{alert("Greška! Netačni parametri za enkripciju ili greška u aplikaciji.")})
     
     
         

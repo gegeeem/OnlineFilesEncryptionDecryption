@@ -145,7 +145,7 @@
             </button>
           <!-- end of start encryptionbtn -->
           <!-- output encoded txt -->
-          <div id="nakonEnkripcije" class="hide">
+          <div id="nakonEnkripcije" class="nakonEnkripcije hide">
 
             
             <h3 class="decryptedHeader">Enkriptovani fajl</h3>
@@ -157,8 +157,17 @@
                 placeholder="Dekriptovani tekst"
                 readonly>
               </textarea> -->
+              <div  class="fileUploadedName">
+                <div class="inlnBlck">
+                  <i  class="fa fa-file fa-4x" aria-hidden="true"></i>
+                  <span id="fileExtension" class="fa fa-lock fileLock"  style="font-weight:600;"></span>
+                </div>
+                <div>
+                  <span id="displayNameOfUploadedFile"></span>
+                </div>
+              </div>
               
-            <a id="dowloadEncFile"   download>Preuzmite enkriptovani fajl <i class="fas fa-file-download"></i></a>
+              <a id="dowloadEncFile"   download>Preuzmite enkriptovani fajl <i class="fas fa-file-download"></i></a>
 
             </div>
             <!-- end of output encoded txt-->
@@ -178,6 +187,15 @@
               
               <div class="secretKey">
                 <!-- <textarea cols="30" rows="8" class="exportJWK rstCls" readonly></textarea> -->
+                <div  class="fileUploadedName">
+                  <div class="inlnBlck">
+                    <i  class="fa fa-file fa-4x" aria-hidden="true"></i>
+                    <span id="fileExtension" class="fa fa-key fileLock"  style="font-weight:600;"></span>
+                  </div>
+                  <div>
+                    <span id="displayNameOfUploadedFile"></span>
+                  </div>
+                </div>
                 
                 <a id="dataFromEncryption"   download>Preuzmite podatke za dekripciju fajla <i class="fas fa-file-download"></i></a>
 
