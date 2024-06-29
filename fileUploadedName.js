@@ -28,6 +28,7 @@ function  displayFileUploadedName(idOfInpuFile, idSpan, displayFileType){
             getIconFileToDisplayType.textContent = extensionFile; // dodeli format "png"
 
         }
+    showHide("show","#fileUploadedName")//sakrij ime fajla
        
         showHide("show", ".inlnBlck")// prikazi ikonicu fajla
         showHide("hide","#btnIzaberiFajl")// sakrij dugme "izaberite fajl"
