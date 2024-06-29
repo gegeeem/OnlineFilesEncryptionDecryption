@@ -8,6 +8,7 @@ function handleResetBtn(){
     showHide("hide",".inlnBlck")// sakrij ikonicu fajla
     showHide("hide", "#resetDiv")
     showHide("hide","#startEncryption")
+    showHide("hide","#nakonEnkripcije")// sakrij rezultate enkripcije 
 }
 getResetBtn.addEventListener("click",handleResetBtn);
 
