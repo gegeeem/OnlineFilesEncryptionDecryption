@@ -44,6 +44,7 @@ function  displayFileUploadedNameDec(idOfInpuFile, idSpan, displayFileType){
         }
         if(idOfInpuFile == "#dataForDec"){
             showHide("show",".fileDataForDec")
+            showHide("show", ".btnForDecEndHeaderLine")
         }
         
 

@@ -205,7 +205,7 @@ button:hover {
   padding: 10px;
 }
 .keyAndIV, .keyAndIVDec {
-  width: 100%;
+  width: 95%;
   padding-top: 8px;
   display: flex;
   flex-direction: column;
@@ -219,10 +219,11 @@ button:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-bottom: 15px;
 }
 .decryptedHeader {
   padding-top: 20px;
-  width: 98%;
+  width: 95%;
   border-top: 2px solid var(--gray);
 }
 .displayEncryptedTxt, .displayEncryptedTxtDEC {
@@ -275,6 +276,10 @@ button:hover {
 .fileDataForDec{
   margin:10px
 }
+.btnForDecEndHeaderLine{
+  width: 95%;
+}
+
 .hide {
   display: none !important; 
 }
