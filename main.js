@@ -1,7 +1,8 @@
 import {encryption} from "./encryption.js";
 import {showHide} from "./showHideElement.js";
+//enkripcija
 
-const getResetBtn = document.querySelector("#rstBtn");// dugme "ponisti"
+const getResetBtnEnc = document.querySelector("#rstBtn");// dugme "ponisti"
 function handleResetBtn(){
     showHide("show","#btnIzaberiFajl")// prikazi dugme "izaberite fajl" nakon sto je pritisnuto "ponisti"
     showHide("hide","#fileUploadedName")//sakrij ime fajla
@@ -10,10 +11,22 @@ function handleResetBtn(){
     showHide("hide","#startEncryption")
     showHide("hide","#nakonEnkripcije")// sakrij rezultate enkripcije 
 }
-getResetBtn.addEventListener("click",handleResetBtn);
+getResetBtnEnc.addEventListener("click",handleResetBtn);
 
 const startEncryptionBtn = document.querySelector("#startEncryption")
 startEncryptionBtn.addEventListener("click",encryption); // pokreni enkripciju i nakon uspesno obavljene enkripcije prikazi dugme za skidanje enkriptovanog fajla i podataka neophodnih za dekripciju
 // sada bi trebalo da se poyove funkcija koja preuima 
 //vec postojeci kljuc za enkripciju podataka ako je cekirano "Unesite postojece zadatke za enkripciju"
 
+// dekripcija
+
+const getRstBtnForDec = document.querySelector("#resetBtnForDec");
+
+function handleRstBtnForDec(){
+    const getFileUploadedNameForDec = document.querySelector("#textForDecFile");
+    showHide("show","#fileUploadedDec");// prikazi dugme "Izaberi fajl"
+    showHide("hide","#fileUploadedNameDec")//sakrij ime fajla
+    showHide("hide","#resetBtnForDec"); // sakrij "ponisti" dugme, tj ovo dugme na kojem je eventListener pozvan
+
+}
+getRstBtnForDec.addEventListener("click", handleRstBtnForDec)

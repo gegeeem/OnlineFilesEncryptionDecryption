@@ -1,6 +1,7 @@
 import {unwrappingKey} from "./unwrapingKey.js"
 import {_arrayBufferToBase64} from "./convertingDataTypes.js"
 import {createFileForDownload} from "./workingWithFiles.js"
+import { showHide } from "./showHideElement.js";
 function decryption(){
     let plainTxt, key, salt, iv;
     const getUploadedFile = document.querySelector("#textForDecFile");
@@ -33,7 +34,7 @@ function decryption(){
         ).then(ciphertext=>{
             console.log(_arrayBufferToBase64(ciphertext))
             createFileForDownload("#downloadDecFile","data:"+getUploadedFile.files[0].type+";base64,"+_arrayBufferToBase64(ciphertext),"dekriptovani_fajl");
-
+            showHide("show", ".displayEncryptedTxtDEC")
         })
         
 

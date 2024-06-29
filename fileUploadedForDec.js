@@ -1,5 +1,5 @@
 import {showHide} from "./showHideElement.js"
-function scrollToElement (id){
+function scrollToElementDec (id){
     const getElToScroll = document.querySelector(id);
     const rect = getElToScroll.getBoundingClientRect();
     window.scrollTo({
@@ -9,7 +9,7 @@ function scrollToElement (id){
     })
 
 }
-function  displayFileUploadedName(idOfInpuFile, idSpan, displayFileType){
+function  displayFileUploadedNameDec(idOfInpuFile, idSpan, displayFileType){
     const file = document.querySelector(idOfInpuFile);
     const getSpanDisplayFileName = document.querySelector(idSpan)
     
@@ -28,23 +28,29 @@ function  displayFileUploadedName(idOfInpuFile, idSpan, displayFileType){
             getIconFileToDisplayType.textContent = extensionFile; // dodeli format "png"
 
         }
-        showHide("show","#fileUploadedName")//sakrij ime fajla
+        showHide("show","#fileUploadedNameDec")//prikazi ime fajla
        
-        showHide("show", ".inlnBlck")// prikazi ikonicu fajla
-        showHide("hide","#btnIzaberiFajl")// sakrij dugme "izaberite fajl"
-        showHide("show","#resetDiv"); // prikazi "ponisti" dugme
-        showHide("show","#startEncryption") // prikazi "Pokreni enkripciju dugme"
-        scrollToElement("#startEncryption")
+        showHide("show", ".inlnBlckDec")// prikazi ikonicu fajla
+        showHide("hide","#fileUploadedDec")// sakrij dugme "izaberite fajl"
+        showHide("show","#resetBtnForDec"); // prikazi "ponisti" dugme
+        showHide("show", ".keyAndIVDec")
+        // showHide("show", "#dataForDecCls")// prikazi dugme za ucitavanje podataka za dekripciju
+        
         showHide("show", ".userKeyIVLabel")
-    
+        if(idOfInpuFile == "#dataForDec"){// ako je poziv za dugme ucitajte podatke za dekripciju onda prikazi dugme ya dekripciju
+        showHide("show", "#btnForDec")
 
+
+        }
+        if(idOfInpuFile == "#dataForDec"){
+            showHide("show",".fileDataForDec")
+        }
+        
 
     }
     
     file.addEventListener("change",getFileUploadedNam)
 }
 
-displayFileUploadedName("#textForEncFile", "#displayNameOfUploadedFile","#fileExtension")
-
-
-
+displayFileUploadedNameDec("#textForDecFile","#displayNameOfUploadedFileDec","#fileExtensionDec")
+displayFileUploadedNameDec("#dataForDec","#dataForDecryption")
