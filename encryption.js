@@ -42,10 +42,24 @@ export function encryption(){
                     console.log("DataForDec> ",DataForDecryption)
             
                     createFileForDownload("#dataFromEncryption","data:application/json;utf8,"+JSON.stringify(DataForDecryption),"podaci za dekripciju");
-                    showHide("show","#nakonEnkripcije")
+                    showHide("show","#nakonEnkripcije");
+                    const getDataEncryptionHeader = document.querySelector("#encFileHeader");
+                    const rect = getDataEncryptionHeader.getBoundingClientRect();
+
+                    const bodyy =document.body.getBoundingClientRect()
+                    console.log("getDataEncryptionHeader",getDataEncryptionHeader.getBoundingClientRect())
+                    console.log("rect.top", rect.top)
+                    // window.scroll(rect.top - bodyy.bottom, 0);
+                    window.scroll({
+                        top: rect.top,
+                        left:0,
+                        behavior:"smooth"
+                    });
+
                     
 
                 });
+                
                 
 
             }).catch(e=>{alert("Greška! Netačni parametri za enkripciju ili greška u aplikaciji.")})

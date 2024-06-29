@@ -15,3 +15,4 @@ const startEncryptionBtn = document.querySelector("#startEncryption")
 startEncryptionBtn.addEventListener("click",encryption); // pokreni enkripciju i nakon uspesno obavljene enkripcije prikazi dugme za skidanje enkriptovanog fajla i podataka neophodnih za dekripciju
 // sada bi trebalo da se poyove funkcija koja preuima 
 //vec postojeci kljuc za enkripciju podataka ako je cekirano "Unesite postojece zadatke za enkripciju"
+
