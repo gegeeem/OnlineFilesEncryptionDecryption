@@ -17,6 +17,7 @@ function decryption(){
         readerDataForDec.onload = async ()=>{
             const DataForDec = JSON.parse(readerDataForDec.result)
             console.log("dataFromEnc",DataForDec);
+            const fileType = DataForDec.type;
             const  keyWrapped = DataForDec.key;
             const  rawKey = keyWrapped.split(",").map((el) =>Number(el));
             salt = DataForDec.salt.split(",").map((el)=>Number(el));
@@ -27,7 +28,11 @@ function decryption(){
             // console.log("salt",salt);
             //  unwrappingKey([198,125,128,95,208,132,125,155,5,215,248,73,240,117,182,235,140,17,111,197,181,220,165,146,123,97,52,23,15,205,170,212,67,205,25,202,169,227,92,237],[188,138,204,91,32,176,54,22,129,188,5,145,181,236,253,104]).then(res=>{console.log(res)})
 
-            key = await unwrappingKey(rawKey,salt).catch(e=>alert("Pogrešno uneti podaci! Pokušajte ponovo."));
+            key = await unwrappingKey(rawKey,salt).catch(e=>{
+                alert("Pogrešno uneti podaci! Pokušajte ponovo.");
+                spin(".spinnerDec","removeSpinner")
+
+            });
             await window.crypto.subtle.decrypt({
                 name:"AES-GCM",
                 iv: iv
@@ -36,11 +41,15 @@ function decryption(){
             readerForEncryptedFile.result
         ).then(ciphertext=>{
             console.log(_arrayBufferToBase64(ciphertext))
-            createFileForDownload("#downloadDecFile","data:"+getUploadedFile.files[0].type+";base64,"+_arrayBufferToBase64(ciphertext),"dekriptovani_fajl");
+            createFileForDownload("#downloadDecFile","data:"+fileType+";base64,"+_arrayBufferToBase64(ciphertext),"dekriptovani_fajl");
             showHide("show", ".displayEncryptedTxtDEC")
             spin(".spinnerDec","removeSpinner")
             window.scrollTo(0, document.body.scrollHeight);
-        }).catch(e=>alert("Pogrešno uneti podaci! Pokušajte ponovo."))
+        }).catch(e=>{
+            alert("Pogrešno uneti podaci! Pokušajte ponovo.") 
+            spin(".spinnerDec","removeSpinner")
+
+        })
         
 
 

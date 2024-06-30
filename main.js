@@ -32,6 +32,8 @@ function handleRstBtnForDec(){
     const getFileUploadedNameForDec = document.querySelector("#textForDecFile");
     showHide("show","#fileUploadedDec");// prikazi dugme "Izaberi fajl"
     showHide("hide","#fileUploadedNameDec")//sakrij ime fajla
+    showHide("hide",".keyAndIVDec")// sakrij podatke za enkripciju
+    showHide("hide", ".btnForDecEndHeaderLine")// sakrij "pokreni dekripciju" dugme
     showHide("hide","#resetBtnForDec"); // sakrij "ponisti" dugme, tj ovo dugme na kojem je eventListener pozvan
 
 }

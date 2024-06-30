@@ -23,6 +23,7 @@ function  displayFileUploadedNameDec(idOfInpuFile, idSpan, displayFileType){
         const getIconFileToDisplayType = document.querySelector(displayFileType)
         if(getIconFileToDisplayType){
             const fileType = file.files[0].type;// file type, example "image/png"
+            console.log("tip fajla", fileType)
             const dashIndex = file.files[0].type.indexOf("/")// find index of dash "/"
             const extensionFile = fileType.slice(dashIndex + 1, dashIndex + 5)// slice string and get png
             getIconFileToDisplayType.textContent = extensionFile; // dodeli format "png"
@@ -36,7 +37,6 @@ function  displayFileUploadedNameDec(idOfInpuFile, idSpan, displayFileType){
         showHide("show", ".keyAndIVDec")
         // showHide("show", "#dataForDecCls")// prikazi dugme za ucitavanje podataka za dekripciju
         
-        showHide("show", ".userKeyIVLabel")
         if(idOfInpuFile == "#dataForDec"){// ako je poziv za dugme ucitajte podatke za dekripciju onda prikazi dugme ya dekripciju
         showHide("show", "#btnForDec")
 

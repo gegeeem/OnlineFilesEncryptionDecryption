@@ -31,12 +31,13 @@ export function encryption(){
                
                 // ciphertext = res; // dodeli reyultat sifrovanja
                 // console.log(ciphertext)
-                createFileForDownload("#dowloadEncFile","data:"+getUploadedFile.files[0].type+";base64,"+_arrayBufferToBase64(res),getUploadedFile.files[0].name);
+                createFileForDownload("#dowloadEncFile","data:application/octet-stream;base64,"+_arrayBufferToBase64(res),getUploadedFile.files[0].name+".enc");
                 wrapCryptoKey(key).then(res=>{
                     console.log("wrapovani kljuc"+res[0]+" salt vrednost: "+res[1])
                     wrappedKey = res[0].toString();
                     console.group("wrappedKey", wrappedKey)
                     const DataForDecryption = {
+                        type: getUploadedFile.files[0].type,
                         key:  wrappedKey, //mora export as funkcija
                         iv: iv.toString(),
                         salt: res[1].toString(),
