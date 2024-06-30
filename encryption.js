@@ -49,8 +49,6 @@ export function encryption(){
                     const rect = getDataEncryptionHeader.getBoundingClientRect();
 
                     const bodyy =document.body.getBoundingClientRect()
-                    console.log("getDataEncryptionHeader",getDataEncryptionHeader.getBoundingClientRect())
-                    console.log("rect.top", rect.top)
                     // window.scroll(rect.top - bodyy.bottom, 0);
                      spin(".spinnerEnc","removeSpinner");
 

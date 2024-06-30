@@ -11,9 +11,7 @@ function handleResetBtn(){
     showHide("hide", "#resetDiv")
     showHide("hide","#startEncryption")
     showHide("hide","#nakonEnkripcije")// sakrij rezultate enkripcije 
-   
-    console.log(getCheckBoxForUploadingData.checked)
-    getCheckBoxForUploadingData.checked = false;
+    getCheckBoxForUploadingData.checked = false;// resetuj checked btn "Unesite postojece podatke za enkripciju"
 }
 getResetBtnEnc.addEventListener("click",handleResetBtn);
 

@@ -7,7 +7,12 @@
     */
     export function getKeyMaterial() {
       console.log("invoked func=>getKeyMaterial() ");
-      const password = window.prompt("Unesite šifru");
+      let password = window.prompt("Unesite šifru");
+      while(password == false || password == null){
+        password = window.prompt("Niste uneli šifru! Pokupajte ponovo")
+
+      }
+      console.log("password", password)
       const enc = new TextEncoder();
       return window.crypto.subtle.importKey(
         "raw", 
