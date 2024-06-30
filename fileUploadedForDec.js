@@ -46,6 +46,7 @@ function  displayFileUploadedNameDec(idOfInpuFile, idSpan, displayFileType){
             showHide("show",".fileDataForDec")
             showHide("show", ".btnForDecEndHeaderLine")
         }
+        window.scrollTo(0, document.body.scrollHeight)
         
 
     }

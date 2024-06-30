@@ -1,7 +1,8 @@
 import {encryption} from "./encryption.js";
 import {showHide} from "./showHideElement.js";
 //enkripcija
-
+const getCheckBoxForUploadingData = document.querySelector("#userKeyIVch")// checked button " unesite postojece poadtake"
+window.addEventListener("load",()=>{getCheckBoxForUploadingData.checked = false}) // reset checked btn
 const getResetBtnEnc = document.querySelector("#rstBtn");// dugme "ponisti"
 function handleResetBtn(){
     showHide("show","#btnIzaberiFajl")// prikazi dugme "izaberite fajl" nakon sto je pritisnuto "ponisti"
@@ -10,6 +11,9 @@ function handleResetBtn(){
     showHide("hide", "#resetDiv")
     showHide("hide","#startEncryption")
     showHide("hide","#nakonEnkripcije")// sakrij rezultate enkripcije 
+   
+    console.log(getCheckBoxForUploadingData.checked)
+    getCheckBoxForUploadingData.checked = false;
 }
 getResetBtnEnc.addEventListener("click",handleResetBtn);
 
@@ -17,6 +21,10 @@ const startEncryptionBtn = document.querySelector("#startEncryption")
 startEncryptionBtn.addEventListener("click",encryption); // pokreni enkripciju i nakon uspesno obavljene enkripcije prikazi dugme za skidanje enkriptovanog fajla i podataka neophodnih za dekripciju
 // sada bi trebalo da se poyove funkcija koja preuima 
 //vec postojeci kljuc za enkripciju podataka ako je cekirano "Unesite postojece zadatke za enkripciju"
+function handleGetChechBoxForUploadingData (){
+    showHide("hide","#startEncryption")
+}
+getCheckBoxForUploadingData.addEventListener("click",handleGetChechBoxForUploadingData)
 
 // dekripcija
 
