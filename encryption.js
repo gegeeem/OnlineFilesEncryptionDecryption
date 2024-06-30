@@ -2,8 +2,10 @@ import {showHide} from "./showHideElement.js"
 import {salt, wrapCryptoKey} from "./wrapingKey.js"
 import {createFileForDownload} from "./workingWithFiles.js"
 import{_arrayBufferToBase64,base64ToArrayBuffer} from "./convertingDataTypes.js"
+import {spin} from "./spinner.js"
 
 export function encryption(){
+    spin(".spinnerEnc","addSpinner");
     let  key, iv, ciphertext, wrappedKey;
     const getUploadedFile = document.querySelector("#textForEncFile");
     const reader = new FileReader();
@@ -50,6 +52,8 @@ export function encryption(){
                     console.log("getDataEncryptionHeader",getDataEncryptionHeader.getBoundingClientRect())
                     console.log("rect.top", rect.top)
                     // window.scroll(rect.top - bodyy.bottom, 0);
+                     spin(".spinnerEnc","removeSpinner");
+
                     window.scroll({
                         top: rect.top,
                         left:0,

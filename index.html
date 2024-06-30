@@ -138,7 +138,8 @@
         
             <!-- start encyption btn -->
             <button id="startEncryption"  class="hide">
-              Pokreni Enkripciju <i class="fa fa-lock" aria-hidden="true"></i>
+              Pokreni Enkripciju <i class="fas fa-lock spinnerEnc" aria-hidden="true"></i>
+
 
             </button>
           <!-- end of start encryptionbtn -->
@@ -165,7 +166,7 @@
                 </div>
               </div>
               
-              <a id="dowloadEncFile"   download>Preuzmite enkriptovani fajl <i class="fas fa-file-download"></i></a>
+              <a id="dowloadEncFile"   download>Preuzmite enkriptovani fajl <i class="fas fa-file-download fa-fade"></i></a>
 
             </div>
             <!-- end of output encoded txt-->
@@ -195,7 +196,7 @@
                   </div>
                 </div>
                 
-                <a id="dataFromEncryption"   download>Preuzmite podatke za dekripciju fajla <i class="fas fa-file-download"></i></a>
+                <a id="dataFromEncryption"   download>Preuzmite podatke za dekripciju fajla <i class="fas fa-file-download fa-fade"></i></a>
 
                 <!-- <button class="btnExportJWK">
                   Preuzmite JWK <i class="fas fa-file-download"></i>
@@ -264,7 +265,7 @@
         </form>
 
         <div class="keyAndIVDec hide">
-          <h3 class="decryptedHeader">Unesite podatke za dekripciju</h3>
+          <h3 class="decryptedHeader">Učitajte podatke za dekripciju</h3>
          
             <div class="secretKey">
               <div  class="fileDataForDec hide">
@@ -334,10 +335,10 @@
           
         </div>
         <!-- start encyption btn -->
-         <div class="btnForDecEndHeaderLine">
-            <h3 class="decryptedHeader"></h3>
-            <button id="btnForDec" class="startDecryption hide">
-              Pokreni Dekripciju
+         <div class="btnForDecEndHeaderLine hide">
+            <h3 class="decryptedHeader">Podaci neophodni za dekripciju su učitani</h3>
+            <button id="btnForDec" class="startDecryption">
+              Pokreni Dekripciju <i class="fas fa-unlock spinnerDec" aria-hidden="true"></i>
             </button>
          </div>
          
@@ -351,7 +352,7 @@
             rows="10"
             required
             readonly></textarea> -->
-            <a id="downloadDecFile">Preuzmi dekriptovani fajl <i class="fas fa-file-download"></i></a>
+            <a id="downloadDecFile">Preuzmi dekriptovani fajl <i class="fas fa-file-download fa-fade"></i></a>
         </div>
         <!-- end of output decoded txt-->
         <!-- start decryption -->

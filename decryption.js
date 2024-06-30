@@ -2,7 +2,10 @@ import {unwrappingKey} from "./unwrapingKey.js"
 import {_arrayBufferToBase64} from "./convertingDataTypes.js"
 import {createFileForDownload} from "./workingWithFiles.js"
 import { showHide } from "./showHideElement.js";
+import {spin} from "./spinner.js"
+
 function decryption(){
+    spin(".spinnerDec","addSpinner")// start spinnig btn
     let plainTxt, key, salt, iv;
     const getUploadedFile = document.querySelector("#textForDecFile");
     const readerForEncryptedFile = new FileReader();
@@ -24,7 +27,7 @@ function decryption(){
             // console.log("salt",salt);
             //  unwrappingKey([198,125,128,95,208,132,125,155,5,215,248,73,240,117,182,235,140,17,111,197,181,220,165,146,123,97,52,23,15,205,170,212,67,205,25,202,169,227,92,237],[188,138,204,91,32,176,54,22,129,188,5,145,181,236,253,104]).then(res=>{console.log(res)})
 
-            key = await unwrappingKey(rawKey,salt);
+            key = await unwrappingKey(rawKey,salt).catch(e=>alert("Pogrešno uneti podaci! Pokušajte ponovo."));
             await window.crypto.subtle.decrypt({
                 name:"AES-GCM",
                 iv: iv
@@ -35,7 +38,8 @@ function decryption(){
             console.log(_arrayBufferToBase64(ciphertext))
             createFileForDownload("#downloadDecFile","data:"+getUploadedFile.files[0].type+";base64,"+_arrayBufferToBase64(ciphertext),"dekriptovani_fajl");
             showHide("show", ".displayEncryptedTxtDEC")
-        })
+            spin(".spinnerDec","removeSpinner")
+        }).catch(e=>alert("Pogrešno uneti podaci! Pokušajte ponovo."))
         
 
 
