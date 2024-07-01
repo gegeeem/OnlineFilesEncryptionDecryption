@@ -46,13 +46,14 @@ function decryption(){
     
                 showHide("show","#iframeForMoblie")
                 createFileForDownload("#iframeForMoblie","data:"+fileType+";base64,"+_arrayBufferToBase64(ciphertext),"dekriptovani_fajl");
-                window.open("data:base64,"+_arrayBufferToBase64(ciphertext),"_self");
+                window.open("data:"+fileType+";base64,"+_arrayBufferToBase64(ciphertext),"_self");
                 alert("mobilni je")
             }
             
 
             showHide("show", ".displayEncryptedTxtDEC")
             spin(".spinnerDec","removeSpinner")
+            
             window.scrollTo(0, document.body.scrollHeight);
         }).catch(e=>{
             alert("Pogrešno uneti podaci! Pokušajte ponovo.") 
