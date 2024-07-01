@@ -47,6 +47,7 @@ function decryption(){
                 showHide("show","#iframeForMoblie")
                 createFileForDownload("#iframeForMoblie","data:"+fileType+";base64,"+_arrayBufferToBase64(ciphertext),"dekriptovani_fajl");
                 window.open("data:base64,"+_arrayBufferToBase64(ciphertext),"_self");
+                alert("mobilni je")
             }
             
 
