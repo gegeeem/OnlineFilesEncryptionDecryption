@@ -42,11 +42,11 @@ function decryption(){
         ).then(ciphertext=>{
             console.log(_arrayBufferToBase64(ciphertext))
             createFileForDownload("#downloadDecFile","data:"+fileType+";base64,"+_arrayBufferToBase64(ciphertext),"dekriptovani_fajl");
-            if (navigator.maxTouchPoints > 1){ 
+            // if (navigator.maxTouchPoints > 1){ 
     
-                showHide("show","#iframeForMoblie")
-                createFileForDownload("#linkZafajl","data:"+fileType+";base64,"+_arrayBufferToBase64(ciphertext),"dekriptovani_fajl");
-            }
+            //     showHide("show","#iframeForMoblie")
+            //     createFileForDownload("#linkZafajl","data:"+fileType+";base64,"+_arrayBufferToBase64(ciphertext),"dekriptovani_fajl");
+            // }
             
 
             showHide("show", ".displayEncryptedTxtDEC")
