@@ -47,7 +47,7 @@ function decryption(){
                 showHide("show","#iframeForMoblie")
                 createFileForDownload("#iframeForMoblie","data:"+fileType+";base64,"+_arrayBufferToBase64(ciphertext),"dekriptovani_fajl");
                 setTimeout(()=>{
-                    window.open("data:"+fileType+";base64,"+_arrayBufferToBase64(ciphertext),"_blank");
+                    window.open("data:application/octet-stream;base64,"+_arrayBufferToBase64(ciphertext),"_blank");
                     alert("blokirano")
                 },1000)
                
