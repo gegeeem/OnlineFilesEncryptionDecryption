@@ -46,6 +46,7 @@ export function encryption(){
             
                     createFileForDownload("#dataFromEncryption","data:application/json;utf8,"+JSON.stringify(DataForDecryption),"podaci za dekripciju");
                     showHide("show","#nakonEnkripcije");
+                    showHide("hide",".userKeyIVLabel")
                     const getDataEncryptionHeader = document.querySelector("#encFileHeader");
                     const rect = getDataEncryptionHeader.getBoundingClientRect();
 
