@@ -12,6 +12,8 @@ function handleResetBtn(){
     showHide("hide","#startEncryption")
     showHide("hide","#nakonEnkripcije")// sakrij rezultate enkripcije 
     getCheckBoxForUploadingData.checked = false;// resetuj checked btn "Unesite postojece podatke za enkripciju"
+    showHide("hide",".userKeyIVLabel")
+    showHide("hide",".displayKeyAndIV")
 }
 getResetBtnEnc.addEventListener("click",handleResetBtn);
 
@@ -20,7 +22,14 @@ startEncryptionBtn.addEventListener("click",encryption); // pokreni enkripciju i
 // sada bi trebalo da se poyove funkcija koja preuima 
 //vec postojeci kljuc za enkripciju podataka ako je cekirano "Unesite postojece zadatke za enkripciju"
 function handleGetChechBoxForUploadingData (){
-    showHide("hide","#startEncryption")
+    if(getCheckBoxForUploadingData.checked){
+        showHide("hide","#startEncryption")
+        showHide("show",".displayKeyAndIV")
+    }else{
+        showHide("show","#startEncryption")
+        showHide("hide",".displayKeyAndIV")
+    }
+    
 }
 getCheckBoxForUploadingData.addEventListener("click",handleGetChechBoxForUploadingData)
 
@@ -36,6 +45,7 @@ function handleRstBtnForDec(){
     showHide("hide", ".btnForDecEndHeaderLine")// sakrij "pokreni dekripciju" dugme
     showHide("hide",".displayEncryptedTxtDEC")
     showHide("hide","#resetBtnForDec"); // sakrij "ponisti" dugme, tj ovo dugme na kojem je eventListener pozvan
+    showHide("hide",".fileDataForDec"); // sakrij ikonicu prethednog unetog fajla
 
 }
 getRstBtnForDec.addEventListener("click", handleRstBtnForDec)

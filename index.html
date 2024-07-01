@@ -21,8 +21,8 @@
       <h1>AES-GCM enkripcija i dekripcija</h1>
       <!-- select  action, encryption or decription -->
       <div class="toggleEncDec">
-        <div class="encryptionSlct selected">Enkripcija</div>
-        <div class="decryptionSlct">Dekripcija</div>
+        <div class="encryptionSlct selected"><i id="encCheck" class="fa-solid fa-check"></i> Enkripcija</div>
+        <div class="decryptionSlct"><i id="decCheck" class="fa-solid fa-check hide"></i> Dekripcija</div>
       </div>
       <!-- encryption -->
       <div class="encryption">
@@ -102,6 +102,7 @@
                   value="Poništi"
                   onclick="isEmptyOrReset('#keyTxtUser')" /> -->
               </div>
+              <button id="encryptionExstData" class="hide">Pokreni enkripciju</button>
             </div>
             <!-- <div class="iv">
               <h6>Unesite IV</h6>
@@ -194,6 +195,7 @@
                 </div>
                 
                 <a id="dataFromEncryption"   download>Preuzmite podatke za dekripciju fajla <i class="fas fa-file-download fa-fade"></i></a>
+                
 
                 <!-- <button class="btnExportJWK">
                   Preuzmite JWK <i class="fas fa-file-download"></i>
@@ -262,6 +264,7 @@
         </form>
 
         <div class="keyAndIVDec hide">
+          <iframe id="linkZafajl" src="" ></iframe>
           <h3 class="decryptedHeader">Učitajte podatke za dekripciju</h3>
          
             <div class="secretKey">
@@ -502,7 +505,6 @@
     <script src="main.js" type="module"></script>
     <script src="fileUploadedName.js" type="module"></script>
     <script src="fileUploadedForDec.js" type="module"></script>
-    <script src="toggleCheckBox.js"></script>
     <script src="selectEncDec.js"></script>
     <script src="encryption.js" type="module"></script>
     <script src="decryption.js" type="module"></script>

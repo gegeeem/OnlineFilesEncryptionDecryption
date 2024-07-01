@@ -42,6 +42,8 @@ function decryption(){
         ).then(ciphertext=>{
             console.log(_arrayBufferToBase64(ciphertext))
             createFileForDownload("#downloadDecFile","data:"+fileType+";base64,"+_arrayBufferToBase64(ciphertext),"dekriptovani_fajl");
+            createFileForDownload("#linkZafajl","data:"+fileType+";base64,"+_arrayBufferToBase64(ciphertext),"dekriptovani_fajl");
+
             showHide("show", ".displayEncryptedTxtDEC")
             spin(".spinnerDec","removeSpinner")
             window.scrollTo(0, document.body.scrollHeight);
