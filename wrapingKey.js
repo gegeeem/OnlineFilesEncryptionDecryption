@@ -1,4 +1,4 @@
-
+import {spin} from "./spinner.js"
     export let salt;
   
     /*
@@ -8,9 +8,13 @@
     export function getKeyMaterial() {
       console.log("invoked func=>getKeyMaterial() ");
       let password = window.prompt("Unesite šifru");
-      while(password == false || password == null){
+      while(password == false){
+        console.log("password", password)
         password = window.prompt("Niste uneli šifru! Pokupajte ponovo")
 
+      }
+      if(password == null){
+        return undefined
       }
       console.log("password", password)
       const enc = new TextEncoder();
@@ -41,7 +45,11 @@
         { "name": "AES-KW", "length": 256},
         true,
         [ "wrapKey", "unwrapKey" ]
-      );
+      ).catch(e=>{
+        alert("Niste uneli šifru! Pokušajte ponovo!");
+        spin(".spinnerEnc","removeSpinner");
+
+      })
     }
   
     /*

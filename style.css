@@ -280,7 +280,9 @@ button:hover {
   flex-direction: column;
   align-items: center;
 }
-
+iframe{
+  width: 100%;
+}
 .hide {
   display: none !important; 
 }

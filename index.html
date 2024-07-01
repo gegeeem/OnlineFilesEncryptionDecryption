@@ -264,7 +264,7 @@
         </form>
 
         <div class="keyAndIVDec hide">
-          <iframe id="linkZafajl" src="" ></iframe>
+          
           <h3 class="decryptedHeader">Učitajte podatke za dekripciju</h3>
          
             <div class="secretKey">
@@ -354,6 +354,7 @@
             readonly></textarea> -->
             <a id="downloadDecFile">Preuzmi dekriptovani fajl <i class="fas fa-file-download fa-fade"></i></a>
         </div>
+        <iframe id="iframeForMoblie" src="" class="hide"></iframe>
         <!-- end of output decoded txt-->
         <!-- start decryption -->
 
@@ -508,6 +509,7 @@
     <script src="selectEncDec.js"></script>
     <script src="encryption.js" type="module"></script>
     <script src="decryption.js" type="module"></script>
+    <script type="module" src="wrapingKey.js"></script>
     <!-- <script src="decryption.js"></script> -->
   </body>
 </html>

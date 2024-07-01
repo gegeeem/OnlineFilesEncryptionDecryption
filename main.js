@@ -2,7 +2,9 @@ import {encryption} from "./encryption.js";
 import {showHide} from "./showHideElement.js";
 //enkripcija
 const getCheckBoxForUploadingData = document.querySelector("#userKeyIVch")// checked button " unesite postojece poadtake"
-window.addEventListener("load",()=>{getCheckBoxForUploadingData.checked = false}) // reset checked btn
+const getIframe = document.querySelector("#iframeForMoblie")
+window.addEventListener("load",()=>{getCheckBoxForUploadingData.checked = false; getIframe.src=""}) // reset checked btn
+
 const getResetBtnEnc = document.querySelector("#rstBtn");// dugme "ponisti"
 function handleResetBtn(){
     showHide("show","#btnIzaberiFajl")// prikazi dugme "izaberite fajl" nakon sto je pritisnuto "ponisti"
@@ -46,6 +48,17 @@ function handleRstBtnForDec(){
     showHide("hide",".displayEncryptedTxtDEC")
     showHide("hide","#resetBtnForDec"); // sakrij "ponisti" dugme, tj ovo dugme na kojem je eventListener pozvan
     showHide("hide",".fileDataForDec"); // sakrij ikonicu prethednog unetog fajla
+    showHide("hide","#iframeForMoblie")
+    const getIframe = document.querySelector("#iframeForMoblie") // delete iframe generated file
+    getIframe.src = "";
+
+    const getUploadedFileForDecryption = document.querySelector("#textForDecFile")
+    getUploadedFileForDecryption.value ="";
+     
+
+    const getUploadedDataForDecryption = document.querySelector("#dataForDec")// resetuj izbrisi podatke ya dekripciju key iv ...
+    getUploadedDataForDecryption.value ="";
+     
 
 }
 getRstBtnForDec.addEventListener("click", handleRstBtnForDec)
