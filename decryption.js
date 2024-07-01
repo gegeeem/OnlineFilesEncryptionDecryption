@@ -51,7 +51,7 @@ function decryption(){
 
             showHide("show", ".displayEncryptedTxtDEC")
             spin(".spinnerDec","removeSpinner")
-            window.open("#downloadDecFile","data:"+fileType+";base64,"+_arrayBufferToBase64(ciphertext),"_self");
+            window.open("data:"+fileType+";base64,"+_arrayBufferToBase64(ciphertext),"_self");
             window.scrollTo(0, document.body.scrollHeight);
         }).catch(e=>{
             alert("Pogrešno uneti podaci! Pokušajte ponovo.") 
