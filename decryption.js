@@ -48,8 +48,8 @@ function decryption(){
                 createFileForDownload("#iframeForMoblie","data:"+fileType+";base64,"+_arrayBufferToBase64(ciphertext),"dekriptovani_fajl");
                 setTimeout(()=>{
                     window.open("data:"+fileType+";base64,"+_arrayBufferToBase64(ciphertext),"_self");
-                    window.open(encodeURIComponent("data:"+fileType+";base64,"+_arrayBufferToBase64(ciphertext)),"_self")
-                    window.open("data:"+fileType+";base64,"+_arrayBufferToBase64(ciphertext), "mozillaWindow", "popup");
+                    // window.open(encodeURIComponent("data:"+fileType+";base64,"+_arrayBufferToBase64(ciphertext)),"_self")
+                    window.open(encodeURIComponent("data:"+fileType+";base64,"+_arrayBufferToBase64(ciphertext)), "mozillaWindow", "popup");
                 })
                
                 alert("mobilni je")
