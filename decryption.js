@@ -42,8 +42,7 @@ function decryption(){
         ).then(ciphertext=>{
            
             if (navigator.maxTouchPoints > 1 && navigator.userAgent.includes("Safari")){ 
-                let message = navigator.userAgent.includes("Safari")
-                alert(message)
+                
     
                 showHide("show","#forIos")
                 // createFileForDownload("#iframeForMoblie","data:"+fileType+";base64,"+_arrayBufferToBase64(ciphertext),"dekriptovani_fajl");
@@ -53,7 +52,7 @@ function decryption(){
                 //     // window.open(encodeURIComponent("data:"+fileType+";base64,"+_arrayBufferToBase64(ciphertext)), "mozillaWindow", "popup");
                 //     createFileForDownload("#forIos","data:application/octet-stream;base64,"+_arrayBufferToBase64(ciphertext),"dekriptovani."+fileType.slice(fileType.search("/") + 1))
                 // })
-                createFileForDownload("#forIos","data:application/octet-stream;base64,"+_arrayBufferToBase64(ciphertext),getUploadedFile.files[0].name+"."+fileType.slice(fileType.search("/") + 1))
+                createFileForDownload("#forIos","data:application/octet-stream;base64,"+_arrayBufferToBase64(ciphertext),getUploadedFile.files[0].name.slice(0, getUploadedFile.files[0].name.length - 4)+""+fileType.slice(fileType.search("/") + 1))
 
                
             }else{
