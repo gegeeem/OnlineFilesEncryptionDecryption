@@ -42,18 +42,20 @@ function decryption(){
         ).then(ciphertext=>{
             console.log(_arrayBufferToBase64(ciphertext))
             createFileForDownload("#downloadDecFile","data:"+fileType+";base64,"+_arrayBufferToBase64(ciphertext),"dekriptovani_fajl");
-            if (navigator.maxTouchPoints > 1){ 
+            if (navigator.maxTouchPoints > 1 && navigator.userAgent.includes("Safari")){ 
+                console.log("navigator.userAgent.includes(Safari)",navigator.userAgent.includes("Safari"))
     
-                showHide("show","#iframeForMoblie")
-                createFileForDownload("#iframeForMoblie","data:"+fileType+";base64,"+_arrayBufferToBase64(ciphertext),"dekriptovani_fajl");
-                setTimeout(()=>{
-                    window.open("data:"+fileType+";base64,"+_arrayBufferToBase64(ciphertext),"_self");
-                    window.open("data:application/octet-stream;base64,"+_arrayBufferToBase64(ciphertext),"_self")
-                    // window.open(encodeURIComponent("data:"+fileType+";base64,"+_arrayBufferToBase64(ciphertext)), "mozillaWindow", "popup");
-                    createFileForDownload("#forIos","data:application/octet-stream;base64,"+_arrayBufferToBase64(ciphertext),"dekriptovani."+fileType.slice(fileType.search("/") + 1))
-                })
+                showHide("show","#forIos")
+                // createFileForDownload("#iframeForMoblie","data:"+fileType+";base64,"+_arrayBufferToBase64(ciphertext),"dekriptovani_fajl");
+                // setTimeout(()=>{
+                //     // window.open("data:"+fileType+";base64,"+_arrayBufferToBase64(ciphertext),"_self");
+                //     // window.open("data:application/octet-stream;base64,"+_arrayBufferToBase64(ciphertext),"_self")
+                //     // window.open(encodeURIComponent("data:"+fileType+";base64,"+_arrayBufferToBase64(ciphertext)), "mozillaWindow", "popup");
+                //     createFileForDownload("#forIos","data:application/octet-stream;base64,"+_arrayBufferToBase64(ciphertext),"dekriptovani."+fileType.slice(fileType.search("/") + 1))
+                // })
+                createFileForDownload("#forIos","data:application/octet-stream;base64,"+_arrayBufferToBase64(ciphertext),"dekriptovani."+fileType.slice(fileType.search("/") + 1))
+
                
-                alert("mobilni je")
             }
             
 
