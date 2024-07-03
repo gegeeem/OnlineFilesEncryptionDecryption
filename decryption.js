@@ -40,8 +40,8 @@ function decryption(){
             key,
             readerForEncryptedFile.result
         ).then(ciphertext=>{
-           let nameOfDecFile  = getUploadedFile.files[0].name.slice(0, getUploadedFile.files[0].name.length - 4)+""+fileType.slice(fileType.search("/") + 1);
-           alert(nameOfDecFile)
+           let nameOfDecFile  = getUploadedFile.files[0].name.slice(0, getUploadedFile.files[0].name.length - 4)+"."+fileType.slice(fileType.search("/") + 1);
+           
             if (navigator.maxTouchPoints > 1 && navigator.userAgent.includes("Safari")){ 
                 
     
@@ -53,7 +53,7 @@ function decryption(){
                 //     // window.open(encodeURIComponent("data:"+fileType+";base64,"+_arrayBufferToBase64(ciphertext)), "mozillaWindow", "popup");
                 //     createFileForDownload("#forIos","data:application/octet-stream;base64,"+_arrayBufferToBase64(ciphertext),"dekriptovani."+fileType.slice(fileType.search("/") + 1))
                 // })
-                createFileForDownload("#forIos","data:application/octet-stream;base64,"+_arrayBufferToBase64(ciphertext),nameOfDecFile)
+                createFileForDownload("#forIos","data:application/octet-stream;base64,"+_arrayBufferToBase64(ciphertext),getUploadedFile.files[0].name)
 
                
             }else{
