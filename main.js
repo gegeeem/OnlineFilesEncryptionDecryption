@@ -48,7 +48,7 @@ function handleRstBtnForDec(){
     showHide("hide",".displayEncryptedTxtDEC")
     showHide("hide","#resetBtnForDec"); // sakrij "ponisti" dugme, tj ovo dugme na kojem je eventListener pozvan
     showHide("hide",".fileDataForDec"); // sakrij ikonicu prethednog unetog fajla
-    showHide("hide","#iframeForMoblie")
+    showHide("hide","#forIos"); //sakrij dugme za preuzimanje iOs i Safari
     const getIframe = document.querySelector("#iframeForMoblie") // delete iframe generated file
     getIframe.src = "";
 
