@@ -40,10 +40,10 @@ function decryption(){
             key,
             readerForEncryptedFile.result
         ).then(ciphertext=>{
-            console.log(_arrayBufferToBase64(ciphertext))
-            createFileForDownload("#downloadDecFile","data:"+fileType+";base64,"+_arrayBufferToBase64(ciphertext),"dekriptovani_fajl");
+           
             if (navigator.maxTouchPoints > 1 && navigator.userAgent.includes("Safari")){ 
-                alert("navigator.userAgent.includes(Safari)",navigator.userAgent.includes("Safari"))
+                let message = navigator.userAgent.includes("Safari")
+                alert(message)
     
                 showHide("show","#forIos")
                 // createFileForDownload("#iframeForMoblie","data:"+fileType+";base64,"+_arrayBufferToBase64(ciphertext),"dekriptovani_fajl");
@@ -56,10 +56,14 @@ function decryption(){
                 createFileForDownload("#forIos","data:application/octet-stream;base64,"+_arrayBufferToBase64(ciphertext),"dekriptovani."+fileType.slice(fileType.search("/") + 1))
 
                
+            }else{
+                console.log(_arrayBufferToBase64(ciphertext))
+                createFileForDownload("#downloadDecFile","data:"+fileType+";base64,"+_arrayBufferToBase64(ciphertext),"dekriptovani_fajl");
+                showHide("show", ".displayEncryptedTxtDEC")
             }
             
 
-            showHide("show", ".displayEncryptedTxtDEC")
+           
             spin(".spinnerDec","removeSpinner")
             
             window.scrollTo(0, document.body.scrollHeight);
