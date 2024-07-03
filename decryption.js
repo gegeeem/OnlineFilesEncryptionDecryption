@@ -53,12 +53,12 @@ function decryption(){
                 //     // window.open(encodeURIComponent("data:"+fileType+";base64,"+_arrayBufferToBase64(ciphertext)), "mozillaWindow", "popup");
                 //     createFileForDownload("#forIos","data:application/octet-stream;base64,"+_arrayBufferToBase64(ciphertext),"dekriptovani."+fileType.slice(fileType.search("/") + 1))
                 // })
-                createFileForDownload("#forIos","data:application/octet-stream;base64,"+_arrayBufferToBase64(ciphertext),"dekriptovani."+fileType.slice(fileType.search("/") + 1))
+                createFileForDownload("#forIos","data:application/octet-stream;base64,"+_arrayBufferToBase64(ciphertext),getUploadedFile.files[0].name.slice(0, getUploadedFile.files[0].name.length - 4 )+""+fileType.slice(fileType.search("/") + 1))
 
                
             }else{
                 console.log(_arrayBufferToBase64(ciphertext))
-                createFileForDownload("#downloadDecFile","data:"+fileType+";base64,"+_arrayBufferToBase64(ciphertext),"dekriptovani_fajl");
+                createFileForDownload("#downloadDecFile","data:"+fileType+";base64,"+_arrayBufferToBase64(ciphertext),getUploadedFile.files[0].name.slice(0, getUploadedFile.files[0].name.length - 4)+""+fileType.slice(fileType.search("/") + 1));
                 showHide("show", ".displayEncryptedTxtDEC")
             }
             
