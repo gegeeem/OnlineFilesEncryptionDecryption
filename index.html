@@ -90,9 +90,8 @@
                 id="jwk"
                 type="file"
                 class="user"
-                onchange="readFile(this,'.keyTxt')"
                 hidden />
-              <div>
+              <div id="jwkLbl">
                 <label for="jwk" class="textForEncFileLabel"
                   >Učitaj podatke <i class="fas fa-file-upload"></i
                 ></label>
@@ -102,7 +101,9 @@
                   value="Poništi"
                   onclick="isEmptyOrReset('#keyTxtUser')" /> -->
               </div>
-              <button id="encryptionExstData" class="hide">Pokreni enkripciju</button>
+              <button id="encryptionExstData" class="hide">
+                Pokreni enkripcijuEx <i class="fas fa-lock spinnerEncExt" aria-hidden="true"></i>
+              </button>
             </div>
             <!-- <div class="iv">
               <h6>Unesite IV</h6>
@@ -511,6 +512,7 @@
     <script src="encryption.js" type="module"></script>
     <script src="decryption.js" type="module"></script>
     <script type="module" src="wrapingKey.js"></script>
+    <script type="module" src="encryptionWthExstdKeys.js"></script>
     <!-- <script src="decryption.js"></script> -->
   </body>
 </html>

@@ -1,3 +1,4 @@
+export let userPass;
 export  function unwrappingKey(wrappedKeyBytes, saltBytes){
     /*
     Convert an array of byte values to an ArrayBuffer.
@@ -14,7 +15,7 @@ export  function unwrappingKey(wrappedKeyBytes, saltBytes){
       The key material is a password supplied by the user.
       */
       function getKeyMaterial() {
-        const password = window.prompt("Unesite sifru");
+        const password = window.prompt("Unesite šifru");
         const enc = new TextEncoder();
         return window.crypto.subtle.importKey(
           "raw", 
@@ -30,7 +31,9 @@ export  function unwrappingKey(wrappedKeyBytes, saltBytes){
       */
       async function getUnwrappingKey() {
         // 1. get the key material (user-supplied password)
-        const keyMaterial = await getKeyMaterial();
+       const keyMaterial = await getKeyMaterial();
+       userPass = keyMaterial;
+      //  userPass = await getKeyMaterial();/// sifra za exportovanje iyvoz podataka kod slucaja kada se ucitavaju postojeci podaci kljuc
         // 2 initialize the salt parameter.
         // The salt must match the salt originally used to derive the key.
         // In this example it's supplied as a constant "saltBytes".
