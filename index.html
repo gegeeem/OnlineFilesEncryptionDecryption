@@ -67,6 +67,7 @@
           <!-- <button onclick="isEmptyOrReset()">Poništi</button> -->
         </form>
         <div class="keyAndIV">
+          
           <label for="userKeyIVch" class="userKeyIVLabel hide">
             <input
               type="checkbox"
@@ -76,6 +77,15 @@
             />
               Unesite postojece podatke za enkripciju
           </label>
+          <div id="existedKeyDataUpload" class="extdKeyClass hide">
+            <div class="exKeyFileIcon">
+              <i  class="fa fa-file fa-4x" aria-hidden="true"></i>
+              <span id="fileExtensionForExstKey" class="fa-layers-text"  style="font-weight:600;">NEW</span>
+            </div>
+            <div>
+              <span id="displayNameOfUploadedKeyFile"></span>
+            </div>
+          </div>
           <div class="displayKeyAndIV hide">
             <div class="secretKey">
               <!-- <h6>U</h6>
@@ -100,9 +110,10 @@
                   id="rstBtn"
                   value="Poništi"
                   onclick="isEmptyOrReset('#keyTxtUser')" /> -->
+                  
               </div>
               <button id="encryptionExstData" class="hide">
-                Pokreni enkripcijuEx <i class="fas fa-lock spinnerEncExt" aria-hidden="true"></i>
+                Pokreni enkripciju <i class="fas fa-lock spinnerEncExt" aria-hidden="true"></i>
               </button>
             </div>
             <!-- <div class="iv">

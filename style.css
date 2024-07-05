@@ -260,7 +260,7 @@ button:hover {
   transform: translate(-50%, -50%);
   color: rgb(241, 242, 250);
 }
-.inlnBlck, .encFileName, .inlnBlckDec{
+.inlnBlck, .encFileName, .inlnBlckDec,.exKeyFileIcon{
   display: inline-block;
   position: relative;
 

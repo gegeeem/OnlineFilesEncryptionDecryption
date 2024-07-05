@@ -1,10 +1,11 @@
 import {encryption} from "./encryption.js";
 import {showHide} from "./showHideElement.js";
 import{encryptionWthExtdKeys} from "./encryptionWthExstdKeys.js"
+import {dispalyExstdKeyFileIconAndName} from "./displayExtdKeyFile.js"
 //enkripcija
 
 
-
+const getExtdDataForEnc = document.querySelector("#jwk");// dugme za ucitavanje postojeceg kljuca
 const getResetBtnEnc = document.querySelector("#rstBtn");// dugme "ponisti"
 function handleResetBtn(){
     showHide("show","#btnIzaberiFajl")// prikazi dugme "izaberite fajl" nakon sto je pritisnuto "ponisti"
@@ -14,16 +15,23 @@ function handleResetBtn(){
     showHide("hide","#startEncryption")
     showHide("hide","#nakonEnkripcije")// sakrij rezultate enkripcije 
     getCheckBoxForUploadingData.checked = false;// resetuj checked btn "Unesite postojece podatke za enkripciju"
+    
     showHide("hide",".userKeyIVLabel")
     showHide("hide",".displayKeyAndIV")
+    showHide("hide","#encryptionExstData")// sakrij dugme "Pokreni enkripciju" ali kada korisnik unosi vec postojeci kljuc tj. podatke
+    showHide("hide", "#existedKeyDataUpload")// file sa postojecim kljucem 
+    getExtdDataForEnc.value="";
 }
 getResetBtnEnc.addEventListener("click",handleResetBtn);
 
 //ako je "Unesite  vec postojece podatke ze enkripciju" cekiran
 const getCheckBoxForUploadingData = document.querySelector("#userKeyIVch")// checked button " unesite postojece poadtake"
 window.addEventListener("load",()=>{getCheckBoxForUploadingData.checked = false;}) // reset checked btn
-const getExtdDataForEnc = document.querySelector("#jwk");// 
+ 
 getExtdDataForEnc.addEventListener("change",()=>{// nakon sto su ucitani postojeci podaci za enc, prikazi dugem "Pokreni enkripciju"
+    const extension = getExtdDataForEnc.files[0].type.slice(getExtdDataForEnc.files[0].type.indexOf("/")+1)// npr image/png extension = png
+    dispalyExstdKeyFileIconAndName(getExtdDataForEnc.files[0].name, extension)// prikazi ikonicu u ektenyiju fajla sa kljucem
+    showHide("show","#existedKeyDataUpload")
     showHide("show","#encryptionExstData")// prikazi dugme ze enkripciju
     showHide("hide","#jwkLbl"); // sakrij ovo dugme
 })
