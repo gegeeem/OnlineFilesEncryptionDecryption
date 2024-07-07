@@ -8,7 +8,8 @@ import {dispalyExstdKeyFileIconAndName} from "./displayExtdKeyFile.js"
 const getExtdDataForEnc = document.querySelector("#jwk");// dugme za ucitavanje postojeceg kljuca
 const getResetBtnEnc = document.querySelector("#rstBtn");// dugme "ponisti"
 const numOfThreads = window.navigator.hardwareConcurrency;
-alert("broj niti je: ", navigator.hardwareConcurrency)
+alert("broj niti je: ", numOfThreads);
+console.log(numOfThreads);
 function handleResetBtn(){
     showHide("show","#btnIzaberiFajl")// prikazi dugme "izaberite fajl" nakon sto je pritisnuto "ponisti"
     showHide("hide","#fileUploadedName")//sakrij ime fajla
