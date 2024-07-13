@@ -26,3 +26,10 @@ export function base64ToArrayBuffer(base64) {
     }
     return bytes.buffer;
 }
+
+export function bytesToBase64(bytes) {
+  const binString = Array.from(bytes, (byte) =>
+    String.fromCodePoint(byte),
+  ).join("");
+  return btoa(binString);
+}

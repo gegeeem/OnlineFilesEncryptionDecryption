@@ -5,6 +5,8 @@ import{_arrayBufferToBase64,base64ToArrayBuffer} from "./convertingDataTypes.js"
 import {spin} from "./spinner.js"
 
 export function encryption(){
+    let start, end;
+    start = Date.now();
     spin(".spinnerEnc","addSpinner");
     let  key, iv, ciphertext, wrappedKey;
     const getUploadedFile = document.querySelector("#textForEncFile");
@@ -21,6 +23,7 @@ export function encryption(){
             ["encrypt","decrypt"]
         );
         console.log("generisani kljuc key=>",key)
+       
         ciphertext = await window.crypto.subtle.encrypt(// enkripcija uploadovanog fajla
             {
                 name: "AES-GCM",
@@ -28,7 +31,9 @@ export function encryption(){
             },
             key,
             reader.result).then(res=>{
-               
+                end = Date.now();
+                console.log(`Execution time: ${(end - start)/1000} s`)
+              
                 // ciphertext = res; // dodeli reyultat sifrovanja
                 // console.log(ciphertext)
                 createFileForDownload("#dowloadEncFile","data:text/plain;base64,"+_arrayBufferToBase64(res),getUploadedFile.files[0].name);
