@@ -5,6 +5,9 @@ export function createFileForDownload(id, file, name){
         // getLink.src = file
         getLink.href = file
         getLink.download = name;
-       getLink.addEventListener("click",()=>{URL.revokeObjectURL(getLink.href)});
+        getLink.click();
+        URL.revokeObjectURL(getLink.href)
+
+//        getLink.addEventListener("click",()=>{URL.revokeObjectURL(getLink.href)});
     
 }
