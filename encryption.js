@@ -36,12 +36,12 @@ export function encryption(){
               
                
                 console.log("res",res)
-                let blob = new Blob([res],{type:"application/octet-stream"})
+                let blob = new Blob([res],{type:`${getUploadedFile.files[0].type}`})
                 console.log("blob: ", blob )
                 console.log("URL", URL.createObjectURL(blob))
                 // createFileForDownload("#dowloadEncFile","data:text/plain;base64,"+_arrayBufferToBase64(res),getUploadedFile.files[0].name);
-                // createFileForDownload("#dowloadEncFile",URL.createObjectURL(blob),getUploadedFile.files[0].name);
-                createFileForDownload("#dowloadEncFile","data:text/plain;base64,"+_arrayBufferToBase64(res),getUploadedFile.files[0].name);
+                createFileForDownload("#dowloadEncFile",URL.createObjectURL(blob),getUploadedFile.files[0].name);
+                // createFileForDownload("#dowloadEncFile","data:text/plain;base64,"+_arrayBufferToBase64(res),getUploadedFile.files[0].name);
 
                 wrapCryptoKey(key).then(res=>{
                     console.log("wrapovani kljuc"+res[0]+" salt vrednost: "+res[1])
