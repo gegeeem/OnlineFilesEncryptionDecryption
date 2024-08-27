@@ -14,7 +14,7 @@ export function encryption(){
     reader.readAsArrayBuffer(getUploadedFile.files[0]);// ucitaj uploadovani fajl kao arrayOfBuffer
     reader.onload = async ()=>{// nakon zavrsetka ocitavanja fajla
         iv =  window.crypto.getRandomValues(new Uint8Array(12)) // generisanje iv-a
-        key =  await window.crypto.subtle.generateKey( // gerisanje kljuca
+        key =  await window.crypto.subtle.generateKey( // generisanje kljuca
             {
                 name: "AES-GCM",
                 length: 256
@@ -34,16 +34,21 @@ export function encryption(){
                 end = Date.now();
                 console.log(`Execution time: ${(end - start)/1000} s`)
               
-                // ciphertext = res; // dodeli reyultat sifrovanja
-                // console.log(ciphertext)
-                createFileForDownload("#dowloadEncFile","data:text/plain;base64,"+_arrayBufferToBase64(res),getUploadedFile.files[0].name);
+               
+                console.log("res",res)
+                let blob = new Blob([res],{type:"application/octet-stream"})
+                console.log("blob: ", blob )
+                console.log("URL", URL.createObjectURL(blob))
+                // createFileForDownload("#dowloadEncFile","data:text/plain;base64,"+_arrayBufferToBase64(res),getUploadedFile.files[0].name);
+                createFileForDownload("#dowloadEncFile",URL.createObjectURL(blob),getUploadedFile.files[0].name);
+
                 wrapCryptoKey(key).then(res=>{
                     console.log("wrapovani kljuc"+res[0]+" salt vrednost: "+res[1])
                     wrappedKey = res[0].toString();
                     console.group("wrappedKey", wrappedKey)
                     const DataForDecryption = {
                         type: getUploadedFile.files[0].type,
-                        key:  wrappedKey, //mora export as funkcija
+                        key:  wrappedKey, //wrapovani kljuc
                         iv: iv.toString(),
                         salt: res[1].toString(),
                     }

@@ -239,7 +239,7 @@
             placeholder="Unesite sifrovani tekst"
             required=""
             oninput="handleTextJwkIVforDec('#textForDec', '#keyTxtDecUser', '#ivTxtAreaDecUser')"></textarea> -->
-          <h3>Učitajte enkriptovani fajl</h3>  
+          <h3>Učitajte fajl za dekripciju</h3>  
           <div id="fileUploadedNameDec" class="hide">
             <div class="inlnBlckDec hide">
               <i  class="fa fa-file fa-4x" aria-hidden="true"></i>
@@ -306,44 +306,12 @@
                   type="file"
                   class="user"
                   hidden />
-                <!-- <input
-                  type="reset"
-                  id="rstBtn"
-                  value="Poništi"
-                  onclick="isEmptyOrReset('#keyTxtDecUserr')" /> -->
+                
               </div>
 
               
             </div>
-            <!-- <div class="iv">
-              <h6>Unesite IV</h6>
-
-              <textarea
-                id="ivTxtAreaDecUser"
-                cols="30"
-                rows="8"
-                class="ivTxtAreaDec user"
-                placeholder="Unesite IV"
-                oninput="handleTextJwkIVforDec('#textForDec', '#keyTxtDecUser', '#ivTxtAreaDecUser')"></textarea>
-
-              <div>
-                <label for="ivForDec" class="textForEncFileLabel"
-                  >Izaberite IV <i class="fas fa-file-upload"></i
-                ></label>
-                <input
-                  id="rstBtn"
-                  type="reset"
-                  value="Poništi"
-                  onclick="isEmptyOrReset('#ivTxtAreaDecUser')" />
-              </div>
-              <input
-                id="ivForDec"
-                type="file"
-                class="user"
-                onchange="readFile(this,'.ivTxtAreaDec')"
-                value="Preuzmite IV"
-                hidden />
-            </div> -->
+            
           
         </div>
         <!-- start encyption btn -->
@@ -359,102 +327,20 @@
         
         <div class="displayEncryptedTxtDEC hide">
           <h3 class="decryptedHeader">Dekriptovani fajl</h3>
-          <!-- <textarea
-            id="areaDisplayDecTxt"
-            rows="10"
-            required
-            readonly></textarea> -->
+         
             <a id="downloadDecFile">Preuzmi dekriptovani fajl <i class="fas fa-file-download fa-fade"></i></a>
         </div>
-        <!-- <iframe id="iframeForMoblie" src="" class="hide"></iframe> -->
+       
         <a id="forIos" class="hide">Preuzmi dekriptovani fajl <i class="fas fa-file-download fa-fade"></i></a>
-        <!-- end of output decoded txt-->
+        <!-- end of output decoded file-->
         <!-- start decryption -->
 
-        <!-- <input type="button" class="hajde" value="preuzmi" /> -->
-        <!-- end of start ecnryption -->
-        <!-- download encrypted txt, secret key & iv -->
-        <!-- <button class="exportDecFile">
-          Preuzmite dekriptovani fajl <i class="fas fa-file-download"></i>
-        </button> -->
+       
       </div>
     </div>
-    <!-- <script type="module" src="encryption.js"></script> -->
+    
+    
     <!-- <script>
-      function readFile(input, elementSelector) {
-        console.log("selektor: ", elementSelector);
-
-        let file = input.files[0];
-
-        let reader = new FileReader();
-        console.log("file type???????",file.type);
-        const blob1 = new Blob([file], {type: file.type});
-      //  let sa =  reader.readAsArrayBuffer(blob1);
-      function getMimeTypeFromArrayBuffer(arrayBuffer) {
-    const uint8arr = new Uint8Array(arrayBuffer)
-  
-    const len = 4
-    if (uint8arr.length >= len) {
-      let signatureArr = new Array(len)
-      for (let i = 0; i < len; i++)
-        signatureArr[i] = (new Uint8Array(arrayBuffer))[i].toString(16);
-      const signature = signatureArr.join('').toUpperCase()
-  
-      switch (signature) {
-        case '89504E47':
-          return 'image/png'
-        case '47494638':
-          return 'image/gif'
-        case '25504446':
-          return 'application/pdf'
-        case 'FFD8FFDB': 
-        case 'FFD8FFE0':
-          return 'image/jpeg'
-        case '0,FFD8':
-          return 'application/zip'
-          case 'EFBBBF':
-          case 'FFFE':
-            return " tekst cisti"
-        default:
-          return signature;
-      }
-    }
-    return null
-  }
-  console.log("blob1type",blob1.type);
-      blob1.arrayBuffer().then(res=>{
-        console.log("getMimeTypeFromArrayBuffer(res)",getMimeTypeFromArrayBuffer(res));
-        document.querySelector(elementSelector).value = res;
-
-      });
-      
-          
-        
-          
-       
-
-        
-
-        // reader.readAsText(file);
-
-        reader.onload = function () {
-          console.log(reader.result);
-          // document.querySelector(elementSelector).value = reader.result;
-          // document.querySelector(".startEncryption").classList.remove("hide");
-          handleTextAreaInput("#textForEnc", "#keyTxtUser", "#ivTxtAreaUser");
-          handleTextJwkIVforDec(
-            "#textForDec",
-            "#keyTxtDecUser",
-            "#ivTxtAreaDecUser"
-          );
-        };
-
-        reader.onerror = function () {
-          console.log(reader.error);
-        };
-      }
-    </script> -->
-    <script>
       const getTextArea = document.querySelector(".startEncryption");
       // const insertedJWK = document.querySelector(".")
       function isEmptyOrReset(resetClassName) {
@@ -515,7 +401,7 @@
           getStartDecBtn.classList.add("hide");
         }
       }
-    </script>
+    </script> -->
     <script src="main.js" type="module"></script>
     <script src="fileUploadedName.js" type="module"></script>
     <script src="fileUploadedForDec.js" type="module"></script>
