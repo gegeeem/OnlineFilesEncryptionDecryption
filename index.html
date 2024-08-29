@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title></title>
     <meta name="description" content="" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <link rel="stylesheet" href="style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
       integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer" />
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
+
   <body>
     <div class="container">
       <h1>AES-GCM enkripcija i dekripcija</h1>
@@ -28,59 +25,37 @@
       <div class="encryption">
         <form>
           <h3>Učitajte fajl za enkripciju</h3>
-          
           <div id="fileUploadedName" class="fileUploadedName">
             <div class="inlnBlck hide">
-              <i  class="fa fa-file fa-4x" aria-hidden="true"></i>
-              <span id="fileExtension" class="fa-layers-text"  style="font-weight:600;">NEW</span>
+              <i class="fa fa-file fa-4x" aria-hidden="true"></i>
+              <span id="fileExtension" class="fa-layers-text" style="font-weight:600;">NEW</span>
             </div>
             <div>
               <span id="displayNameOfUploadedFile"></span>
             </div>
           </div>
-          
-          
-          
           <div class="getFileAndReset">
-            
             <div id="btnIzaberiFajl">
-                <label for="textForEncFile" class="textForEncFileLabel">
-                    Izaberite fajl <i class="fas fa-file-upload"></i>
-                </label>
-                
-                <input id="textForEncFile" class="textForEncFileLabel" type="file"  hidden/>
+              <label for="textForEncFile" class="textForEncFileLabel">
+                Izaberite fajl <i class="fas fa-file-upload"></i>
+              </label>
+              <input id="textForEncFile" class="textForEncFileLabel" type="file" hidden />
             </div>
-            
-            
             <!-- accept=".txt, .doc, .docx"  -->
-            <div id ="resetDiv" class="resetDiv hide">
-              <input
-              type="button"
-              id="rstBtn"
-              value="Ponisti"
-              placeholder=""
-               />
+            <div id="resetDiv" class="resetDiv hide">
+              <input type="button" id="rstBtn" value="Ponisti" placeholder="" />
             </div>
-
-            
           </div>
-          <!-- <button onclick="isEmptyOrReset()">Poništi</button> -->
         </form>
         <div class="keyAndIV">
-          
           <label for="userKeyIVch" class="userKeyIVLabel hide">
-            <input
-              type="checkbox"
-              name="userKeyIV"
-              id="userKeyIVch"
-              class="userKeyIV" 
-            />
-              Unesite postojece podatke za enkripciju
+            <input type="checkbox" name="userKeyIV" id="userKeyIVch" class="userKeyIV" />
+            Unesite postojece podatke za enkripciju
           </label>
           <div id="existedKeyDataUpload" class="extdKeyClass hide">
             <div class="exKeyFileIcon">
-              <i  class="fa fa-file fa-4x" aria-hidden="true"></i>
-              <span id="fileExtensionForExstKey" class="fa-layers-text"  style="font-weight:600;">NEW</span>
+              <i class="fa fa-file fa-4x" aria-hidden="true"></i>
+              <span id="fileExtensionForExstKey" class="fa-layers-text" style="font-weight:600;">NEW</span>
             </div>
             <div>
               <span id="displayNameOfUploadedKeyFile"></span>
@@ -88,162 +63,63 @@
           </div>
           <div class="displayKeyAndIV hide">
             <div class="secretKey">
-              <!-- <h6>U</h6>
-              <textarea
-                id="keyTxtUser"
-                class="keyTxt user"
-                cols="30"
-                rows="8"
-                placeholder="Tajni kljuc"
-                oninput="handleTextAreaInput('#textForEnc', '#keyTxtUser','#ivTxtAreaUser')"></textarea> -->
-              <input
-                id="jwk"
-                type="file"
-                class="user"
-                hidden />
+
+              <input id="jwk" type="file" class="user" hidden />
               <div id="jwkLbl">
-                <label for="jwk" class="textForEncFileLabel"
-                  >Učitaj podatke <i class="fas fa-file-upload"></i
-                ></label>
-                <!-- <input
-                  type="reset"
-                  id="rstBtn"
-                  value="Poništi"
-                  onclick="isEmptyOrReset('#keyTxtUser')" /> -->
-                  
+                <label for="jwk" class="textForEncFileLabel">Učitaj podatke <i class="fas fa-file-upload"></i></label>
               </div>
               <button id="encryptionExstData" class="hide">
                 Pokreni enkripciju <i class="fas fa-lock spinnerEncExt" aria-hidden="true"></i>
               </button>
             </div>
-            <!-- <div class="iv">
-              <h6>Unesite IV</h6>
 
-              <textarea
-                id="ivTxtAreaUser"
-                cols="30"
-                rows="8"
-                class="ivTxtArea user"
-                placeholder="IV"
-                oninput="handleTextAreaInput('#textForEnc', '#keyTxtUser','#ivTxtAreaUser')"></textarea>
-              <input
-                id="iv"
-                type="file"
-                class="user"
-                onchange="readFile(this,'.ivTxtArea')"
-                value="Preuzmite IV"
-                hidden />
-              <div>
-                <label for="iv" class="textForEncFileLabel"
-                  >Izaberite IV <i class="fas fa-file-upload"></i
-                ></label>
-                <input
-                  type="reset"
-                  id="rstBtn"
-                  value="Poništi"
-                  onclick="isEmptyOrReset('#ivTxtAreaUser')" />
-              </div>
-            </div> -->
           </div>
         </div>
-        
-        
-            <!-- start encyption btn -->
-            <button id="startEncryption"  class="hide">
-              Pokreni Enkripciju <i class="fas fa-lock spinnerEnc" aria-hidden="true"></i>
-            </button>
-          <!-- end of start encryptionbtn -->
-          <!-- output encoded txt -->
-          <div id="nakonEnkripcije" class="nakonEnkripcije hide">
-
-            
-            <h3 id="encFileHeader" class="decryptedHeader">Enkriptovani fajl</h3>
-            <div class="displayEncryptedTxt rstCls">
-              <!-- <textarea
-                id="areaDisplayEncTxt"
-                class="rstCls"
-                rows="10"
-                placeholder="Dekriptovani tekst"
-                readonly>
-              </textarea> -->
-              <div  class="fileUploadedName">
+        <!-- start encyption btn -->
+        <button id="startEncryption" class="hide">
+          Pokreni Enkripciju <i class="fas fa-lock spinnerEnc" aria-hidden="true"></i>
+        </button>
+        <!-- end of start encryptionbtn -->
+        <!-- output encoded txt -->
+        <div id="nakonEnkripcije" class="nakonEnkripcije hide">
+          <h3 id="encFileHeader" class="decryptedHeader">Enkriptovani fajl</h3>
+          <div class="displayEncryptedTxt rstCls">
+            <div class="fileUploadedName">
+              <div class="inlnBlck">
+                <i class="fa fa-file fa-4x" aria-hidden="true"></i>
+                <span id="fileExtension" class="fa fa-lock fileLock" style="font-weight:600;"></span>
+              </div>
+              <div>
+                <span id="displayNameOfUploadedFile"></span>
+              </div>
+            </div>
+            <a id="dowloadEncFile" download>Preuzmite enkriptovani fajl <i class="fas fa-file-download fa-fade"></i></a>
+          </div>
+          <h3 class="decryptedHeader">Podaci za dekripciju</h3>
+          <div class="displayKeyAndIV random">
+            <div class="secretKey">
+              <div class="fileUploadedName">
                 <div class="inlnBlck">
-                  <i  class="fa fa-file fa-4x" aria-hidden="true"></i>
-                  <span id="fileExtension" class="fa fa-lock fileLock"  style="font-weight:600;"></span>
+                  <i class="fa fa-file fa-4x" aria-hidden="true"></i>
+                  <span id="fileExtension" class="fa fa-key fileLock" style="font-weight:600;"></span>
                 </div>
                 <div>
                   <span id="displayNameOfUploadedFile"></span>
                 </div>
               </div>
-              
-              <a id="dowloadEncFile"   download>Preuzmite enkriptovani fajl <i class="fas fa-file-download fa-fade"></i></a>
-
-            </div>
-            <!-- end of output encoded txt-->
-            <!-- start encryption -->
-
-            <!-- <input type="button" class="hajde" value="preuzmi" /> -->
-            <!-- end of start ecnryption -->
-            <!-- download encrypted txt, secret key & iv -->
-
-            <!-- <button class="hajde">
-
-              Preuzmite kriptovani fajl <i class="fas fa-file-download"></i>
-            </button> -->
-            <h3 class="decryptedHeader">Podaci za dekripciju</h3>
-
-            <div class="displayKeyAndIV random">
-              
-              <div class="secretKey">
-                <!-- <textarea cols="30" rows="8" class="exportJWK rstCls" readonly></textarea> -->
-                <div  class="fileUploadedName">
-                  <div class="inlnBlck">
-                    <i  class="fa fa-file fa-4x" aria-hidden="true"></i>
-                    <span id="fileExtension" class="fa fa-key fileLock"  style="font-weight:600;"></span>
-                  </div>
-                  <div>
-                    <span id="displayNameOfUploadedFile"></span>
-                  </div>
-                </div>
-                
-                <a id="dataFromEncryption"   download>Preuzmite podatke za dekripciju fajla <i class="fas fa-file-download fa-fade"></i></a>
-                
-
-                <!-- <button class="btnExportJWK">
-                  Preuzmite JWK <i class="fas fa-file-download"></i>
-                </button> -->
-              </div>
-              <!-- <div class="iv">
-                <textarea cols="30" rows="8" class="exportIV rstCls" readonly></textarea>
-                <button class="btnExportIV">
-                  Preuzmite IV <i class="fas fa-file-download"></i>
-                </button>
-              </div> -->
+              <a id="dataFromEncryption" download>Preuzmite podatke za dekripciju fajla <i
+                  class="fas fa-file-download fa-fade"></i></a>
             </div>
           </div>
-
-        
+        </div>
       </div>
-      <!-- end of encryption -->
-      <!-- decryption -->
       <div class="decryption hide">
         <form>
-          <!-- <label for="textForDec" class="labelTextForEnc"
-            >Unesite tekst ispod ili učitajte fajl u .txt formatu</label
-          >
-
-          <textarea
-            id="textForDec"
-            class=""
-            rows="10"
-            placeholder="Unesite sifrovani tekst"
-            required=""
-            oninput="handleTextJwkIVforDec('#textForDec', '#keyTxtDecUser', '#ivTxtAreaDecUser')"></textarea> -->
-          <h3>Učitajte fajl za dekripciju</h3>  
+          <h3>Učitajte fajl za dekripciju</h3>
           <div id="fileUploadedNameDec" class="hide">
             <div class="inlnBlckDec hide">
-              <i  class="fa fa-file fa-4x" aria-hidden="true"></i>
-              <span id="fileExtensionDec" class="fa-layers-text"  style="font-weight:600;">NEW</span>
+              <i class="fa fa-file fa-4x" aria-hidden="true"></i>
+              <span id="fileExtensionDec" class="fa-layers-text" style="font-weight:600;">NEW</span>
             </div>
             <div>
               <span id="displayNameOfUploadedFileDec"></span>
@@ -251,157 +127,54 @@
           </div>
           <div class="getFileAndReset">
             <div id="fileUploadedDec">
-              <label for="textForDecFile" class="textForEncFileLabel"
-              >Izaberite fajl <i class="fas fa-file-upload"></i>
+              <label for="textForDecFile" class="textForEncFileLabel">Izaberite fajl <i class="fas fa-file-upload"></i>
               </label> <span id="encryptedFileUploadedName"></span>
-              <input id="textForDecFile"type="file" hidden />
+              <input id="textForDecFile" type="file" hidden />
             </div>
-            
-             <div id="resetBtnForDec"  class="hide">
-              <input
-                type="reset"
-                id="rstBtn"
-                value="Poništi"
-               />
-
-             </div>
-              
-            
-
-            
+            <div id="resetBtnForDec" class="hide">
+              <input type="reset" id="rstBtn" value="Poništi" />
+            </div>
             <!-- accept=".txt, .doc, .docx"  -->
-            <!-- <button onclick="(e)=>isEmptyOrReset(e)">Poništi</button> -->
-            <!-- <input type="reset" value="ne" /> -->
           </div>
         </form>
-
         <div class="keyAndIVDec hide">
-          
           <h3 class="decryptedHeader">Učitajte podatke za dekripciju</h3>
-         
-            <div class="secretKey">
-              <div  class="fileDataForDec hide">
-                <div class="inlnBlck">
-                  <i  class="fa fa-file fa-4x" aria-hidden="true"></i>
-                  <span id="fileExtension" class="fa fa-key fileLock"  style="font-weight:600;"></span>
-                </div>
-                <div>
-                  <span id="dataForDecryption"></span>
-                </div>
+          <div class="secretKey">
+            <div class="fileDataForDec hide">
+              <div class="inlnBlck">
+                <i class="fa fa-file fa-4x" aria-hidden="true"></i>
+                <span id="fileExtension" class="fa fa-key fileLock" style="font-weight:600;"></span>
               </div>
-              <!-- <textarea
-                id="keyTxtDecUser"
-                class="keyTxtDec user"
-                cols="30"
-                rows="8"
-                placeholder="Unesite tajni kljuc"
-                oninput="handleTextJwkIVforDec('#textForDec', '#keyTxtDecUser', '#ivTxtAreaDecUser')"></textarea> -->
-                
               <div>
-                <label for="dataForDec" class="textForEncFileLabel"
-                  >Učitajte podatke <i class="fas fa-file-upload"></i
-                ></label>
-                <input
-                  id="dataForDec"
-                  type="file"
-                  class="user"
-                  hidden />
-                
+                <span id="dataForDecryption"></span>
               </div>
-
-              
             </div>
-            
-          
+            <div>
+              <label for="dataForDec" class="textForEncFileLabel">Učitajte podatke <i
+                  class="fas fa-file-upload"></i></label>
+              <input id="dataForDec" type="file" class="user" hidden />
+            </div>
+          </div>
         </div>
-        <!-- start encyption btn -->
-         <div class="btnForDecEndHeaderLine hide">
-            <h3 class="decryptedHeader">Podaci neophodni za dekripciju su učitani</h3>
-            <button id="btnForDec" class="startDecryption">
-              Pokreni Dekripciju <i class="fas fa-unlock spinnerDec" aria-hidden="true"></i>
-            </button>
-         </div>
-         
+        <!-- start decryption btn -->
+        <div class="btnForDecEndHeaderLine hide">
+          <h3 class="decryptedHeader">Podaci neophodni za dekripciju su učitani</h3>
+          <button id="btnForDec" class="startDecryption">
+            Pokreni Dekripciju <i class="fas fa-unlock spinnerDec" aria-hidden="true"></i>
+          </button>
+        </div>
         <!-- end of start decryptionbtn -->
-        <!-- output decoded txt -->
-        
+        <!-- output decoded file -->
         <div class="displayEncryptedTxtDEC hide">
           <h3 class="decryptedHeader">Dekriptovani fajl</h3>
-         
-            <a id="downloadDecFile">Preuzmi dekriptovani fajl <i class="fas fa-file-download fa-fade"></i></a>
+
+          <a id="downloadDecFile">Preuzmi dekriptovani fajl <i class="fas fa-file-download fa-fade"></i></a>
         </div>
-       
         <a id="forIos" class="hide">Preuzmi dekriptovani fajl <i class="fas fa-file-download fa-fade"></i></a>
         <!-- end of output decoded file-->
         <!-- start decryption -->
-
-       
       </div>
     </div>
-    
-    
-    <!-- <script>
-      const getTextArea = document.querySelector(".startEncryption");
-      // const insertedJWK = document.querySelector(".")
-      function isEmptyOrReset(resetClassName) {
-        
-        // document.querySelector(resetClassName).value = "";
-        let getElemSameClass = document.querySelectorAll(resetClassName);
-        console.log("getElemSameClass",getElemSameClass);
-        for(let i = 0; i<getElemSameClass.length; i++){
-          getElemSameClass[i].value = "";
-        
-         console.log(getElemSameClass[i].value);
-        }
-
-        const getTextArea = document.querySelector(".textForEncFileLabel");
-        if (getTextArea.value) {
-          getTextArea.classList.remove("hide");
-        } else {
-          getTextArea.classList.add("hide");
-
-          console.log("stani");
-        }
-        // showHide("show","#textForEncFileLabel")
-        
-      }
-      function handleTextAreaInput(txtIsEmpty, jwkIsEmpty, ivIsEmpty) {
-        const getTxtValue = document.querySelector(txtIsEmpty).value;
-        const getJwkValue = document.querySelector(jwkIsEmpty).value;
-        const getIvValue = document.querySelector(ivIsEmpty).value;
-        console.log("getTxtValue", getTxtValue);
-        console.log("getJwkValue", getJwkValue);
-        console.log("getIvValue", getIvValue);
-        const isUserJwkIvChecked =
-          document.querySelector("#userKeyIVch").checked;
-
-        if (isUserJwkIvChecked && getTxtValue && getJwkValue && getIvValue) {
-          getTextArea.classList.remove("hide");
-        } else if (!isUserJwkIvChecked && getTxtValue) {
-          getTextArea.classList.remove("hide");
-        } else {
-          getTextArea.classList.add("hide");
-        }
-      }
-
-      function handleTextJwkIVforDec(txtIsEmpty, jwkIsEmpty, ivIsEmpty) {
-        const getStartDecBtn = document.querySelector(".startDecryption");
-        const getTxtValue = document.querySelector(txtIsEmpty).value;
-        const getJwkValue = document.querySelector(jwkIsEmpty).value;
-        const getIvValue = document.querySelector(ivIsEmpty).value;
-        console.log(
-          "value of...........",
-          getTxtValue,
-          getJwkValue,
-          getIvValue
-        );
-        if (getTxtValue && getJwkValue && getIvValue) {
-          getStartDecBtn.classList.remove("hide");
-        } else {
-          getStartDecBtn.classList.add("hide");
-        }
-      }
-    </script> -->
     <script src="main.js" type="module"></script>
     <script src="fileUploadedName.js" type="module"></script>
     <script src="fileUploadedForDec.js" type="module"></script>
@@ -410,6 +183,6 @@
     <script src="decryption.js" type="module"></script>
     <script type="module" src="wrapingKey.js"></script>
     <script type="module" src="encryptionWthExstdKeys.js"></script>
-    <!-- <script src="decryption.js"></script> -->
   </body>
+
 </html>

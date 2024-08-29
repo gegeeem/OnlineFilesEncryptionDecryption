@@ -1,3 +1,13 @@
 {
-    "liveServer.settings.port": 5501
+    "liveServer.settings.port": 5501,
+    "editor.wrappingIndent": "indent",
+    "html.format.indentHandlebars": true,
+    "html.format.indentInnerHtml": true,
+    "prettier.vueIndentScriptAndStyle": true,
+    "editor.foldingStrategy": "indentation",
+    "prettier.useTabs": true,
+    "workbench.tree.renderIndentGuides": "always",
+    "editor.formatOnSave": true,
+    "notebook.formatOnSave.enabled": true,
+    "editor.codeActions.triggerOnFocusChange": true
 }
